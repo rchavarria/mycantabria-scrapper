@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
-    clean = require('gulp-clean');
+    clean = require('gulp-clean'),
+    rename = require('gulp-rename');
 
 gulp.task('default', ['clean'], function() {
     gulp.start('scripts');
