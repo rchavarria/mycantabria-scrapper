@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    clean = require('gulp-clean');
 
 gulp.task('clean', function() {
   return gulp.src(['dist/assets/js'], {read: false})
