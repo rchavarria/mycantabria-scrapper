@@ -9,8 +9,8 @@ gulp.task('default', ['clean'], function() {
 });
 
 gulp.task('clean', function() {
-  return gulp.src(['dist/assets/js'], {read: false})
-    .pipe(clean());
+    return gulp.src(['dist/assets/js'], {read: false})
+        .pipe(clean());
 });
 
 gulp.task('scripts', function() {
