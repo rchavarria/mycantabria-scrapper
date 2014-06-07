@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "author": "Ruben Chavarria http://rchavarria.github.io",
   "devDependencies": {
-    "node.io": "~0.5.1"
+    "node.io": "~0.5.1",
+    "gulp": "~3.7.0"
   }
 }
