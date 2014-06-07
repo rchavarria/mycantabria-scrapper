@@ -9,7 +9,7 @@ gulp.task('default', ['clean'], function() {
 });
 
 gulp.task('clean', function() {
-    return gulp.src(['dist/assets/js'], {read: false})
+    return gulp.src(['dist'], {read: false})
         .pipe(clean());
 });
 
