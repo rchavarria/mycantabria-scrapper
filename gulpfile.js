@@ -3,6 +3,10 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     clean = require('gulp-clean');
 
+gulp.task('default', ['clean'], function() {
+    gulp.start('scripts');
+});
+
 gulp.task('clean', function() {
   return gulp.src(['dist/assets/js'], {read: false})
     .pipe(clean());
