@@ -1,0 +1,9 @@
+{
+  "name": "mycantabria-scrapper",
+  "description": "A tool to scrap mycantabria.com",
+  "version": "0.0.1",
+  "author": "Ruben Chavarria http://rchavarria.github.io",
+  "devDependencies": {
+    "node.io": "~0.5.1"
+  }
+}
