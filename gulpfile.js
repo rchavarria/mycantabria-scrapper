@@ -17,7 +17,7 @@ gulp.task('scripts', function() {
     return gulp.src('src/scripts/**/*.js')
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
-        .pipe(gulp.dest('dist/assets/js'))
+        .pipe(gulp.dest('dist/assets/tmp-js'))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(gulp.dest('dist/assets/js'));
