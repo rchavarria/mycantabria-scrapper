@@ -1,3 +1,4 @@
+/* global require, console, process */
 var nodeio = require('node.io');
 
 var scraper = {
