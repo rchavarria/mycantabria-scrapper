@@ -11,7 +11,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/scripts/**/*.js',
+//      'src/scripts/**/*.js',
       'test/scripts/**/*.js'
     ],
 
@@ -21,7 +21,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/scripts/**/*.js': ['commonjs'],
+//      'src/scripts/**/*.js': ['commonjs'],
       'test/scripts/**/*.js': ['commonjs']
     },
 
