@@ -2,9 +2,17 @@
 
 A scrapper for mycantabria.com
 
+# TODO list
+
+- pipe the `request` result to be able to return data from the scrapped web
+
 # Install
 
 `npm install`
+
+# Build with gulp
+
+`gulp`
 
 # Run
 
