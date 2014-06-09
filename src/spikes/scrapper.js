@@ -1,4 +1,7 @@
 /* global require, console, process */
+
+console.log('To make this script to work: npm install --save node.io');
+
 var nodeio = require('node.io');
 
 var scraper = {
