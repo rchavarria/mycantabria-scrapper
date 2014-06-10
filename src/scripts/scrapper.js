@@ -25,6 +25,11 @@ var Scrapper = module.exports = function () {
 
     this.scrap = function (site) {
         options.url = site;
-        return request(options, responseHandler);
+        var r = request(options);
+
+        r.pipe(process.stdout);
+        r.on('end', function () {
+            console.log('Se acabó');
+        })
     }
 };
