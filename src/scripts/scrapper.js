@@ -25,11 +25,18 @@ var Scrapper = module.exports = function () {
 
     this.scrap = function (site) {
         options.url = site;
-        var r = request(options);
+        var r = request(options),
+            chunks = [];
 
-        r.pipe(process.stdout);
+//        r.pipe(process.stdout);
+        r.on('data', function (chunk) {
+            chunks.push(chunk);
+        });
         r.on('end', function () {
-            console.log('Se acabó');
-        })
+            console.log('-------------------------------');
+            var body = chunks.join('');
+            console.log('body: ' + body);
+            console.log('received: ' + chunks.length + ' chunks of data');
+        });
     }
 };
