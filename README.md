@@ -4,7 +4,10 @@ A scrapper for mycantabria.com
 
 # TODO list
 
-- pipe the `request` result to be able to return data from the scrapped web
+- take a look to the [Q](https://github.com/kriskowal/q) library for javascript promises.
+It seems to be one of the best promises libraries for node and using Q.defer() seems to
+be the right way to handle our case asynchronously.
+x pipe the `request` result to be able to return data from the scrapped web
 
 # Install
 

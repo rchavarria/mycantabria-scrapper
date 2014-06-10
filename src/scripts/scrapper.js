@@ -28,7 +28,6 @@ var Scrapper = module.exports = function () {
         var r = request(options),
             chunks = [];
 
-//        r.pipe(process.stdout);
         r.on('data', function (chunk) {
             chunks.push(chunk);
         });
