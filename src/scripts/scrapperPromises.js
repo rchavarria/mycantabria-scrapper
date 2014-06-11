@@ -22,9 +22,9 @@ function scrapSite(site) {
     return deferred.promise;
 }
 
-var scrapPromise = scrapSite('http://mycantabria.com');
-scrapPromise.then(function (body) {
-	console.log('Got it! Body has ' + body.length + " chars");
-}, function (err) {
-	console.log(err);
-});
+scrapSite('http://mycantabria.com')
+	.then(function (body) {
+		console.log('Got it! Body has ' + body.length + " chars");
+	}, function (err) {
+		console.log(err);
+	});
