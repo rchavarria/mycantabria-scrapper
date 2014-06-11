@@ -8,19 +8,6 @@ var options = {
     }
 };
 
-function responseHandler(err, response, body) {
-    if (err) throw err;
-
-    var $ = cheerio.load(body);
-    var h2s = [];
-
-    $('h2').each(function () {
-        h2s.push($(this).text());
-    });
-
-    return h2s;
-}
-
 function scrap() {
     var deferred = Q.defer();
 
