@@ -5,7 +5,8 @@
   "author": "Ruben Chavarria http://rchavarria.github.io",
   "dependencies": {
     "request": "~2.36.0",
-    "cheerio": "~0.16.0"
+    "cheerio": "~0.16.0",
+    "q": "~1.0.1"
   },
   "devDependencies": {
     "gulp": "~3.7.0",

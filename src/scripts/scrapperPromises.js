@@ -1,5 +1,5 @@
 var request = require('request'),
-    cheerio = require('cheerio');
+    Q = require('q');
 
 var options = {
     url: 'http://mycantabria.com',
@@ -21,10 +21,8 @@ function responseHandler(err, response, body) {
     return h2s;
 }
 
-this.scrap = function (site) {
-    options.url = site;
-    var r = request(options),
-        chunks = [];
+function scrap = function (site) {
+    var r = request(options)
 
     r.on('data', function (chunk) {
         chunks.push(chunk);
