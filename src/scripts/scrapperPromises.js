@@ -39,5 +39,5 @@ var scrapPromise = scrap();
 scrapPromise.then(function (body) {
 	console.log('Got it! Body has ' + body.length + " chars");
 }, function (err) {
-	throw err;
+	console.log(err);
 });
