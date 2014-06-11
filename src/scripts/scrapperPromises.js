@@ -21,16 +21,23 @@ function responseHandler(err, response, body) {
     return h2s;
 }
 
-function scrap = function (site) {
-    var r = request(options)
+function scrap = function () {
+    var deferred = Q.defer();
 
-    r.on('data', function (chunk) {
-        chunks.push(chunk);
+    request(options, function (err, response, body) {
+    	if (err) {
+    		deferred.reject(err);
+    	} else {
+    		deferred.resolve(body);
+    	}
     });
-    r.on('end', function () {
-        console.log('-------------------------------');
-        var body = chunks.join('');
-        console.log('body: ' + body);
-        console.log('received: ' + chunks.length + ' chunks of data');
-    });
+
+    return deferred.promise;
 }
+
+var scrapPromise = scrap();
+scrapPromise.then(function (body) {
+	console.log('Got it! Body has ' + body.length + " chars");
+}, function (err) {
+	throw err;
+});
