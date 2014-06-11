@@ -21,7 +21,7 @@ function responseHandler(err, response, body) {
     return h2s;
 }
 
-function scrap = function () {
+function scrap() {
     var deferred = Q.defer();
 
     request(options, function (err, response, body) {
