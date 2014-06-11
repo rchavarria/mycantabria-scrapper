@@ -1,15 +1,15 @@
 var request = require('request'),
     Q = require('q');
 
-var options = {
-    url: 'http://mycantabria.com',
-    headers: {
-        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:29.0) Gecko/20100101 Firefox/29.0'
-    }
-};
 
-function scrap() {
-    var deferred = Q.defer();
+function scrapSite(site) {
+    var deferred = Q.defer(),
+		options = {
+		    url: site,
+		    headers: {
+		        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:29.0) Gecko/20100101 Firefox/29.0'
+		    }
+		};
 
     request(options, function (err, response, body) {
     	if (err) {
@@ -22,7 +22,7 @@ function scrap() {
     return deferred.promise;
 }
 
-var scrapPromise = scrap();
+var scrapPromise = scrapSite('http://mycantabria.com');
 scrapPromise.then(function (body) {
 	console.log('Got it! Body has ' + body.length + " chars");
 }, function (err) {
