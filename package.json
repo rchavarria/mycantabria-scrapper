@@ -6,7 +6,7 @@
   "dependencies": {
     "request": "~2.36.0",
     "cheerio": "~0.16.0",
-    "q": "~1.0.1"
+    "q": "~2.0.2"
   },
   "devDependencies": {
     "gulp": "~3.7.0",
