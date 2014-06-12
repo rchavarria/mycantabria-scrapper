@@ -1,3 +1,4 @@
+// run with 'node src/spikes/promises.js'
 var request = require('request'),
     Q = require('q');
 
