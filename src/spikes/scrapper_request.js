@@ -4,8 +4,7 @@
  * scrap a web with request
  */
 var Scrapper = module.exports = function () {
-    var request = require('request'),
-        cheerio = require('cheerio');
+    var request = require('request');
 
     var options = {
         url: '',
