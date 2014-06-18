@@ -1,4 +1,4 @@
-// run with 'node src/spikes/scrapper_events.js'
+// run with 'node src/spikes/scrapper_request.js'
 
 /**
  * scrap a web with request
