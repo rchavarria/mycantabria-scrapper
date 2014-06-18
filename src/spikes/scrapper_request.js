@@ -1,5 +1,8 @@
 // run with 'node src/spikes/scrapper_events.js'
 
+/**
+ * scrap a web with request
+ */
 var Scrapper = module.exports = function () {
     var request = require('request'),
         cheerio = require('cheerio');
