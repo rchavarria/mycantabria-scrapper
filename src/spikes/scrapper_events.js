@@ -27,3 +27,6 @@ var Scrapper = module.exports = function () {
         });
     }
 };
+
+var mycantabriaScrapper = new Scrapper();
+mycantabriaScrapper.scrap('http://mycantabria.com');
