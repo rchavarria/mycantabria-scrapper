@@ -1,6 +1,7 @@
 
 var Scrapper = module.exports = function () {
-    var Q = require('q');
+    var Q = require('q'),
+        PropertiesIds = require('./properties-ids');
 
     this.scrap = function (site) {
         //
@@ -12,12 +13,11 @@ var Scrapper = module.exports = function () {
         // 5. log to a file/console/whatever
         // 6. save information in a file/db/backend/whatever
         //
-        Q(function () {
-            return [409, 410, 411];
-        })
-            .call()
+        var ids = new PropertiesIds(Q);
+        ids.getPropertiesIds()
             .then(function (ids) {
                 console.log('ids: ', ids);
+                return ids;
             });
     }
 };
