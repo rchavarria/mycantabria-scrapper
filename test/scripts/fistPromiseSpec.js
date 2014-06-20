@@ -1,16 +1,29 @@
 describe('First promise test', function () {
     var chai = require("chai"),
-    	expect = chai.expect,
     	chaiAsPromised = require("chai-as-promised"),
-    	Factory = require('../../src/scripts/factory'),
-    	Q = require('q');
+    	Q = require('q'),
 
+    	// expect
+    	expect = chai.expect,
+
+    	// local dependencies
+    	Factory = require('../../src/scripts/factory');
+
+    // configure chai to use chai-as-promise
 	chai.use(chaiAsPromised);
 
-    it('tests promises', function() {
-        var f = new Factory(Q),
-        	p = f.createPromise([1, 2, 3]);
+    describe('#createPromise', function () {
+    	var factory;
 
-        expect(p).to.eventually.have.length(3);
-    })
+    	beforeEach(function () {
+    		factory = new Factory(Q);
+    	});
+
+    	it('returns the same value passed as parameter', function () {
+    		expect(factory.createPromise(1234)).to.eventually.equals(1234);
+    		expect(factory.createPromise('string value')).to.eventually.equals('string value');
+    		expect(factory.createPromise([1, 2, 3])).to.eventually.equals([1, 2, 3]);
+    	})
+
+    });
 });
