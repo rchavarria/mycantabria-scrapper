@@ -1,7 +1,7 @@
 
 var Scrapper = module.exports = function () {
     var Q = require('q'),
-        PropertiesIds = require('./properties-ids');
+        Factory = require('./factory');
 
     this.scrap = function (site) {
         //
@@ -14,7 +14,7 @@ var Scrapper = module.exports = function () {
         // 6. save information in a file/db/backend/whatever
         //
         var ids = [2026, 2031, 2034],
-            factory = new PropertiesIds(Q);
+            factory = new Factory(Q);
 
         factory.createPromise(ids)
             .then(function (ids) {
