@@ -13,11 +13,11 @@ var Scrapper = module.exports = function () {
         // 6. save information in a file/db/backend/whatever
         //
         Q(function () {
-            return 409;
+            return [409, 410, 411];
         })
             .call()
-            .then(function (id) {
-                console.log('id: ', id);
+            .then(function (ids) {
+                console.log('ids: ', ids);
             });
     }
 };
