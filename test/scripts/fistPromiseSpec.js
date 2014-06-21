@@ -1,16 +1,8 @@
 describe('First promise test', function () {
-    var chai = require("chai"),
-        chaiAsPromised = require("chai-as-promised"),
-        Q = require('q'),
-
-        // expect
-        expect = chai.expect,
+    var Q = require('q'),
 
         // local dependencies
         Factory = require('../../src/scripts/factory');
-
-    // configure chai to use chai-as-promise
-    chai.use(chaiAsPromised);
 
     describe('#createPromise', function () {
         var factory;

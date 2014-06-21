@@ -26,5 +26,5 @@ gulp.task('scripts', function() {
 
 gulp.task('test', function () {
     return gulp.src('test/scripts/**/*.js')
-        .pipe(mocha({reporter: 'spec'}));
+        .pipe(mocha({ reporter: 'spec' }));
 });
