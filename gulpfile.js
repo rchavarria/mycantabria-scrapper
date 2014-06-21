@@ -25,6 +25,5 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('test', function () {
-    return gulp.src('test/scripts/**/*.js')
-        .pipe(mocha({ reporter: 'spec' }));
+    console.log('tests are run by a script instead of gulp, use the following command: "./run-test"');
 });
