@@ -28,3 +28,10 @@ gulp.task('test', function () {
     return gulp.src(['test/bootstrap.js', 'test/scripts/**/*.js'])
         .pipe(mocha({ reporter: 'spec' }));
 });
+
+/**
+ * Run tests while watching for file changes
+ */
+gulp.task('testw', function () {
+    return gulp.watch(['src/scripts/**/*.js', 'test/scripts/**/*.js'], ['test']);
+});
