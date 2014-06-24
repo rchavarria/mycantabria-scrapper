@@ -1,7 +1,11 @@
 
 var Scrapper = module.exports = function () {
+    // require node modules
     var Q = require('q'),
-        Factory = require('./factory');
+
+        // require local modules
+        Factory = require('./factory'),
+        getContent = require('./content');
 
     this.scrap = function (site) {
         //
@@ -17,9 +21,6 @@ var Scrapper = module.exports = function () {
             factory = new Factory(Q);
 
         factory.createPromise(ids)
-            .then(function (ids) {
-                console.log('ids: ', ids);
-                return ids;
-            });
+            .then(getContent);
     }
 };
