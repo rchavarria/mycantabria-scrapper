@@ -1,5 +1,4 @@
 describe('First test', function () {
-    var expect = require('chai').expect;
 
     it('runs with mocha and chai', function () {
         expect(1).equals(1);
