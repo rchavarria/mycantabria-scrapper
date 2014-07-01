@@ -12,7 +12,12 @@ describe('module: Crawler', function () {
             crawler = new Crawler(Q, request);
         });
 
-        it('', function () {
+        it('returns as many promises as ids are passed', function () {
+            expect(crawler.getContent([1, 2, 3])).to.have.length(3);
+        });
+
+        it('installs sinon.js and sinon-chai to mock object in tests', function () {
+            expect(1).to.equals(2);
         });
 
     });
