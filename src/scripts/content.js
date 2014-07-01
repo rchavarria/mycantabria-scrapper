@@ -4,6 +4,8 @@
  * a promise
  */
 var Crawler = module.exports = function(Q, request) {
+    var MYCANTABRIA_PREFIX = 'http://mycantabria.com/inmueble.php?id_inmueble=';
+
     this.Q = Q;
     this.request = request;
 
