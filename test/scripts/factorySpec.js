@@ -1,4 +1,4 @@
-describe('First promise test', function () {
+describe('module: Factory', function () {
     var Q = require('q'),
 
         // local dependencies
