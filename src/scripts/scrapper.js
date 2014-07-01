@@ -2,10 +2,11 @@
 var Scrapper = module.exports = function () {
     // require node modules
     var Q = require('q'),
+        request = require('request'),
 
         // require local modules
         Factory = require('./factory'),
-        getContent = require('./content');
+        Crawler = require('./content');
 
     this.scrap = function (site) {
         //
@@ -18,9 +19,10 @@ var Scrapper = module.exports = function () {
         // 6. save information in a file/db/backend/whatever
         //
         var ids = [2026, 2031, 2034],
-            factory = new Factory(Q);
+            factory = new Factory(Q),
+            crawler = new Crawler(Q, request);
 
         factory.createPromise(ids)
-            .then(getContent);
+            .then(crawler.getContent);
     }
 };
