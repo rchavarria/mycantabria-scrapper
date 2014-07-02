@@ -8,4 +8,18 @@ describe('First test', function () {
         var module = require('../../src/scripts/testRequire');
         expect(module.testRequire()).to.equal(true);
     })
+
+    describe('sinon.js', function () {
+        function hello(name, callback) {
+            callback('hello ' + name);
+        }
+
+        it('can spy on functions', function () {
+            var cb = sinon.spy();
+
+            hello('foo', cb);
+
+            expect(cb).to.have.been.calledWith('hello foo');
+        });
+    });
 });
