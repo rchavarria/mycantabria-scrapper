@@ -24,5 +24,9 @@ describe('module: Crawler', function () {
             expect(mockRequest).to.have.been.calledThrice;
         });
 
+        it('calls request module with the correct url', function () {
+            expect(1).to.be(2);
+        });
+
     });
 });
