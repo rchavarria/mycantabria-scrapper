@@ -16,8 +16,12 @@ describe('module: Crawler', function () {
             expect(crawler.getContent([1, 2, 3])).to.have.length(3);
         });
 
-        it('installs sinon.js and sinon-chai to mock object in tests', function () {
-            expect(1).to.equals(2);
+        it('calls request module as many times as ids are passed', function () {
+            var mockRequest = sinon.spy(),
+                spiedCrawler = new Crawler(Q, mockRequest),
+                promises = spiedCrawler.getContent([1, 2, 3]);
+
+            expect(mockRequest).to.have.been.calledThrice;
         });
 
     });
