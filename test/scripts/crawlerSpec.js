@@ -35,5 +35,9 @@ describe('module: Crawler', function () {
             expectUrlOption(2, 3);
         });
 
+        it('RED: CREATE A STUB OF REQUEST, AND FORCE REJECT A PROMISE', function() {
+            expect(1).to.equal(2);
+        })
+
     });
 });
