@@ -29,9 +29,14 @@ describe('module: Crawler', function () {
                 spiedCrawler = new Crawler(Q, mockRequest),
                 promises = spiedCrawler.getContent([1, 2, 3]);
 
-            expect(mockRequest.getCall(0).args[0].url).to.equals('http://mycantabria.com/inmueble.php?id_inmueble=' + 1);
-            expect(mockRequest.getCall(1).args[0].url).to.equals('http://mycantabria.com/inmueble.php?id_inmueble=' + 2);
-            expect(mockRequest.getCall(2).args[0].url).to.equals('http://mycantabria.com/inmueble.php?id_inmueble=' + 3);
+            function expectUrlOption(nthCall, id) {
+                var url = mockRequest.getCall(nthCall).args[0].url;
+                expect(url).to.equals('http://mycantabria.com/inmueble.php?id_inmueble=' + id);
+            }
+
+            expectUrlOption(0, 1);
+            expectUrlOption(1, 2);
+            expectUrlOption(2, 3);
         });
 
     });
