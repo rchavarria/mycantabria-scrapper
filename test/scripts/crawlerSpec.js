@@ -6,10 +6,11 @@ describe('module: Crawler', function () {
         Crawler = require('../../src/scripts/crawler');
 
     describe('#getContent', function () {
-        var crawler;
+        var mockRequest, crawler;
 
         beforeEach(function () {
-            crawler = new Crawler(Q, request);
+            mockRequest = sinon.spy();
+            crawler = new Crawler(Q, mockRequest);
         });
 
         it('returns as many promises as ids are passed', function () {
@@ -17,17 +18,13 @@ describe('module: Crawler', function () {
         });
 
         it('calls request module as many times as ids are passed', function () {
-            var mockRequest = sinon.spy(),
-                spiedCrawler = new Crawler(Q, mockRequest),
-                promises = spiedCrawler.getContent([1, 2, 3]);
+            var promises = crawler.getContent([1, 2, 3]);
 
             expect(mockRequest).to.have.been.calledThrice;
         });
 
         it('calls request module with the correct url', function () {
-            var mockRequest = sinon.spy(),
-                spiedCrawler = new Crawler(Q, mockRequest),
-                promises = spiedCrawler.getContent([1, 2, 3]);
+            var promises = crawler.getContent([1, 2, 3]);
 
             function expectUrlOption(nthCall, id) {
                 var url = mockRequest.getCall(nthCall).args[0].url;
