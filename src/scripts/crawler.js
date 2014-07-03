@@ -4,14 +4,17 @@
  * a promise
  */
 var Crawler = module.exports = function(Q, request) {
-    var MYCANTABRIA_PREFIX = 'http://mycantabria.com/inmueble.php?id_inmueble=',
-        Options = function (url) {
+    var Options = function (url) {
             this.url = url,
             this.headers = {
                 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:29.0) Gecko/20100101 Firefox/29.0'
             }
-        }
+        };
 
+    // constants
+    this.MYCANTABRIA_PREFIX = 'http://mycantabria.com/inmueble.php?id_inmueble=';
+
+    // properties
     this.Q = Q;
     this.request = request;
 
@@ -28,7 +31,7 @@ var Crawler = module.exports = function(Q, request) {
 
         for (i = 0; i < ids.length; i++) {
             deferred = this.Q.defer();
-            options = new Options(MYCANTABRIA_PREFIX + ids[i]);
+            options = new Options(this.MYCANTABRIA_PREFIX + ids[i]);
 
             this.request(options, function (err, response, body) {
                 if (err) {
