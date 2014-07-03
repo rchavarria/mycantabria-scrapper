@@ -25,7 +25,13 @@ describe('module: Crawler', function () {
         });
 
         it('calls request module with the correct url', function () {
-            expect(1).to.be(2);
+            var mockRequest = sinon.spy(),
+                spiedCrawler = new Crawler(Q, mockRequest),
+                promises = spiedCrawler.getContent([1, 2, 3]);
+
+            expect(mockRequest.getCall(0).args[0].url).to.equals('http://mycantabria.com/inmueble.php?id_inmueble=' + 1);
+            expect(mockRequest.getCall(1).args[0].url).to.equals('http://mycantabria.com/inmueble.php?id_inmueble=' + 2);
+            expect(mockRequest.getCall(2).args[0].url).to.equals('http://mycantabria.com/inmueble.php?id_inmueble=' + 3);
         });
 
     });

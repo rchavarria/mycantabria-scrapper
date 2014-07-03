@@ -4,7 +4,13 @@
  * a promise
  */
 var Crawler = module.exports = function(Q, request) {
-    var MYCANTABRIA_PREFIX = 'http://mycantabria.com/inmueble.php?id_inmueble=';
+    var MYCANTABRIA_PREFIX = 'http://mycantabria.com/inmueble.php?id_inmueble=',
+        Options = function (url) {
+            this.url = url,
+            this.headers = {
+                'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:29.0) Gecko/20100101 Firefox/29.0'
+            }
+        }
 
     this.Q = Q;
     this.request = request;
@@ -16,18 +22,13 @@ var Crawler = module.exports = function(Q, request) {
      */
     this.getContent = function(ids) {
         var i,
+            options,
             deferred,
-            promises = [],
-            options = {
-                url: '',
-                headers: {
-                    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:29.0) Gecko/20100101 Firefox/29.0'
-                }
-            };
+            promises = [];
 
         for (i = 0; i < ids.length; i++) {
             deferred = this.Q.defer();
-            options.url = MYCANTABRIA_PREFIX + ids[i];
+            options = new Options(MYCANTABRIA_PREFIX + ids[i]);
 
             this.request(options, function (err, response, body) {
                 if (err) {
