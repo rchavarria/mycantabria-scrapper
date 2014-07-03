@@ -23,12 +23,12 @@ describe('module: Crawler', function () {
         });
 
         it('calls request module with the correct url', function () {
-            var promises = crawler.getContent([1, 2, 3]);
-
             function expectUrlOption(nthCall, id) {
                 var url = mockRequest.getCall(nthCall).args[0].url;
                 expect(url).to.equals('http://mycantabria.com/inmueble.php?id_inmueble=' + id);
             }
+
+            var promises = crawler.getContent([1, 2, 3]);
 
             expectUrlOption(0, 1);
             expectUrlOption(1, 2);
