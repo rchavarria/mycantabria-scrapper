@@ -25,7 +25,7 @@ describe('module: Crawler', function () {
         it('calls request module with the correct url', function () {
             function expectUrlOption(nthCall, id) {
                 var url = mockRequest.getCall(nthCall).args[0].url;
-                expect(url).to.equals(crawler.MYCANTABRIA_PREFIX + id);
+                expect(url).to.equal(crawler.MYCANTABRIA_PREFIX + id);
             }
 
             var promises = crawler.getContent([1, 2, 3]);
