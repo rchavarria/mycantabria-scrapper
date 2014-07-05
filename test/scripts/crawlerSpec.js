@@ -47,7 +47,21 @@ describe('module: Crawler', function () {
             
             // assertions
             return expect(rejectedPromise).to.be.rejected;
-        })
+        });
+
+        it('resolves a promise if request module gets content', function() {
+            // configuring stub
+            var bodyContent = 'some body content',
+                stubRequest = sinon.stub();
+            stubRequest.callsArgWith(1, null, null, bodyContent);
+            crawler = new Crawler(Q, stubRequest);
+
+            // test
+            var resolvedPromise = crawler.getContent([1])[0];
+
+            // assertions
+            return expect(resolvedPromise).to.eventually.equal(bodyContent);
+        });
 
     });
 });
