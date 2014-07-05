@@ -46,8 +46,7 @@ describe('module: Crawler', function () {
             var rejectedPromise = crawler.getContent([1])[0];
             
             // assertions
-            expect(rejectedPromise).to.be.rejected;
-            expect(rejectedPromise).to.eventually.equals('bo');
+            return expect(rejectedPromise).to.be.rejected;
         })
 
     });
