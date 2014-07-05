@@ -35,8 +35,19 @@ describe('module: Crawler', function () {
             expectUrlOption(2, 3);
         });
 
-        it('RED: CREATE A STUB OF REQUEST, AND FORCE REJECT A PROMISE', function() {
-            expect(1).to.equal(2);
+        it('rejects a promise if request module fails at getting content', function() {
+            // configuring stub
+            var stubRequest = sinon.stub();
+            stubRequest.callsArgWith(1, 'Calls the requests callback with an error string');
+            // create crawler with stubbed request
+            crawler = new Crawler(Q, stubRequest);
+
+            // test
+            var rejectedPromise = crawler.getContent([1])[0];
+            
+            // assertions
+            expect(rejectedPromise).to.be.rejected;
+            expect(rejectedPromise).to.eventually.equals('bo');
         })
 
     });
