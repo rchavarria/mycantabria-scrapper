@@ -1,3 +1,4 @@
+/*global require, describe, it, expect, sinon*/
 describe('First test', function () {
 
     it('runs with mocha and chai', function () {
@@ -7,7 +8,7 @@ describe('First test', function () {
     it('requires modules from production code', function() {
         var module = require('../../src/scripts/testRequire');
         expect(module.testRequire()).to.equal(true);
-    })
+    });
 
     describe('sinon.js', function () {
         function hello(name, callback) {
