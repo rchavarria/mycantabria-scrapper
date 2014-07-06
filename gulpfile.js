@@ -30,7 +30,7 @@ gulp.task('jshint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('test', function () {
+gulp.task('test', ['jshint'], function () {
     return gulp.src(['test/bootstrap.js', 'test/scripts/**/*.js'])
         .pipe(mocha({ reporter: 'spec' }));
 });
@@ -38,6 +38,6 @@ gulp.task('test', function () {
 /**
  * Run tests while watching for file changes
  */
-gulp.task('testw', function () {
+gulp.task('testw', ['jshint'], function () {
     return gulp.watch(['src/scripts/**/*.js', 'test/scripts/**/*.js'], ['test']);
 });
