@@ -1,3 +1,4 @@
+/*global describe, it, require, expect*/
 describe('learning module: Q', function() {
     var Q = require('q');
         
