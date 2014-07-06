@@ -24,6 +24,12 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('dist/assets/js'));
 });
 
+gulp.task('jshint', function() {
+    return gulp.src(['src/scripts/**/*.js', 'src/scripts/**/*.js'])
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('default'));
+});
+
 gulp.task('test', function () {
     return gulp.src(['test/bootstrap.js', 'test/scripts/**/*.js'])
         .pipe(mocha({ reporter: 'spec' }));
