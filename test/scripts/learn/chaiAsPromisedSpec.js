@@ -1,9 +1,10 @@
+/*global describe, it, require, expect*/
 describe('Chai As Promised API', function() {
     var Q = require('q');
     
     it('checks values returned by promises', function() {
         var value = 4,
-            promise = Q(function () { return value }).call();
+            promise = Q(function () { return value; }).call();
 
         // /!\ NOTICE the return statement /!\
         return expect(promise).to.eventually.equals(value);
@@ -20,4 +21,4 @@ describe('Chai As Promised API', function() {
         // /!\ NOTICE the return statement /!\
         return expect(promise).to.be.rejected;
     });
-})
+});
