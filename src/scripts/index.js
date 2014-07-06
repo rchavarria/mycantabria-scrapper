@@ -1,3 +1,4 @@
+/*global require*/
 var Scrapper = require('./scrapper'),
     mycantabriaScrapper = new Scrapper();
 
