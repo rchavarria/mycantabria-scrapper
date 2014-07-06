@@ -25,7 +25,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('jshint', function() {
-    return gulp.src(['src/scripts/**/*.js', 'src/scripts/**/*.js'])
+    return gulp.src(['src/scripts/**/*.js', 'test/scripts/**/*.js'])
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'));
 });
