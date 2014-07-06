@@ -9,6 +9,6 @@ describe('learning module: Q', function() {
                 singlePromise = Q([promise1, promise2]).all();
 
             expect(singlePromise).to.eventually.have.members([4, 5]);
-        })
-    })
-})
+        });
+    });
+});
