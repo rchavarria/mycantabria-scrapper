@@ -1,3 +1,4 @@
+/*global require, describe, beforeEach, it, expect*/
 describe('module: Factory', function () {
     var Q = require('q'),
 
