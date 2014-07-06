@@ -1,3 +1,4 @@
+/*global require, describe, beforeEach, it, expect, sinon*/
 describe('module: Crawler', function () {
     var Q = require('q'),
 
@@ -17,9 +18,9 @@ describe('module: Crawler', function () {
         });
 
         it('calls request module as many times as ids are passed', function () {
-            var promises = crawler.getContent([1, 2, 3]);
+            crawler.getContent([1, 2, 3]);
 
-            expect(mockRequest).to.have.been.calledThrice;
+            return expect(mockRequest).to.have.been.calledThrice;
         });
 
         it('calls request module with the correct url', function () {
@@ -28,7 +29,7 @@ describe('module: Crawler', function () {
                 expect(url).to.equal(crawler.MYCANTABRIA_PREFIX + id);
             }
 
-            var promises = crawler.getContent([1, 2, 3]);
+            crawler.getContent([1, 2, 3]);
 
             expectUrlOption(0, 1);
             expectUrlOption(1, 2);
