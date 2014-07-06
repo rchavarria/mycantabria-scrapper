@@ -1,5 +1,5 @@
-
-var Scrapper = module.exports = function () {
+/*global module, require, console*/
+module.exports = function () {
     // require node modules
     var Q = require('q'),
         request = require('request'),
@@ -9,6 +9,7 @@ var Scrapper = module.exports = function () {
         Crawler = require('./content');
 
     this.scrap = function (site) {
+        console.log('site to be scrapped:', site);
         //
         // steps
         // 1. get properties ids (start returning a promise)
@@ -24,5 +25,5 @@ var Scrapper = module.exports = function () {
 
         factory.createPromise(ids)
             .then(crawler.getContent);
-    }
+    };
 };
