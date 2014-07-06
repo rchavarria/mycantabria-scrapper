@@ -67,5 +67,9 @@ describe('module: Crawler', function () {
         it('RED : WHAT THE HELL HAPPENS WITH PROMISES LIBRARY WHEN AN ARRAY OF PROMISES IS RETURNED', function() {
             expect(1).to.equal(2);
         });
+
+        it('RED : MAKE GULP FAIL IF JSHINT TASK FAILS', function() {
+            expect(2).to.equal(1);
+        })
     });
 });
