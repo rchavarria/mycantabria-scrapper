@@ -64,9 +64,5 @@ describe('module: Crawler', function () {
             // assertions
             return expect(resolvedPromise).to.eventually.have.members(expectedPromiseValue);
         });
-
-        it('RED : MAKE GULP FAIL IF JSHINT TASK FAILS', function() {
-            expect(2).to.equal(1);
-        })
     });
 });
