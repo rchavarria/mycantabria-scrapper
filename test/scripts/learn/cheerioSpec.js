@@ -45,5 +45,27 @@ describe('Cheerio', function() {
                 expect($('div').html()).to.equal('<p>Hello</p>');
             });
         });
+
+        describe('##Selectors: $(selector, [context], [root]', function () {
+            var $ = cheerio.load(markup);
+
+            it('searches for a selector within a context', function () {
+                var appleText = $('.apple', '#fruits').text();
+
+                expect(appleText).to.equal('Apple');
+            });
+
+            it('searchs for child selectors', function () {
+                var pearText = $('ul .pear').text();
+
+                expect(pearText).to.equal('Pear');
+            });
+
+            it('searches with the element[attribute=value] grammar', function () {
+                var orangeElement = $('li[class=orange]').html();
+
+                expect(orangeElement).to.equal('Orange');
+            });
+        });
     });
 });
