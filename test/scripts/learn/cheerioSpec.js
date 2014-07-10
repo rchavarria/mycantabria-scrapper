@@ -67,5 +67,26 @@ describe('Cheerio', function() {
                 expect(orangeElement).to.equal('Orange');
             });
         });
+
+        describe('##Traversing', function () {
+            var $ = cheerio.load(markup);
+
+            it('.find(selector) finds descendants', function () {
+                expect($('ul').find('li')).to.have.length(3);
+            });
+
+            it('.parent() gets the parent of the element', function () {
+                expect($('.pear').parent().attr('id')).to.equal('fruits');
+            });
+
+            it('.next([selector]) gets the next sibling of the first selected element', function () {
+                return expect($('.apple').next().hasClass('orange')).to.be.true;
+            });
+
+            it('.siblings([selector]) gets next siblings of the first selected element', function () {
+                // FIXME 12345 => 2
+                expect($('.apple').siblings()).to.have.length(12345);
+            });
+        });
     });
 });
