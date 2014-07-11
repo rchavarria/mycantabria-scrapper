@@ -28,5 +28,8 @@ describe('module: Parser', function () {
             expect(parser.parse(pages)).to.have.length(pages.length);
         });
 
+        it('RED : TRY TO PREVENT NODEJS TO FINISH WAITING FOR PROMISES', function () {
+            expect(2).to.be(1);
+        });
     });
 });
