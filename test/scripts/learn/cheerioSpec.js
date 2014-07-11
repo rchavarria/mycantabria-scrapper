@@ -84,9 +84,23 @@ describe('Cheerio', function() {
             });
 
             it('.siblings([selector]) gets next siblings of the first selected element', function () {
-                // FIXME 12345 => 2
-                expect($('.apple').siblings()).to.have.length(12345);
+                expect($('.apple').siblings()).to.have.length(2);
             });
+
+            it('.([selector]) gets the children of the first selected element', function () {
+                expect($('#fruits').children()).to.have.length(3);
+            });
+
+            it('.each( function(index, element) ) iterates over cheerio elements', function () {
+                var fruits = [];
+
+                $('li').each(function(i, elem) {
+                    fruits[i] = $(elem).text();
+                });
+
+                expect(fruits.join(', ')).to.equal('Apple, Orange, Pear');
+            });
+
         });
     });
 });

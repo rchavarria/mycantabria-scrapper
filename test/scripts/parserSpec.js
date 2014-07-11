@@ -1,5 +1,5 @@
 /*global require, describe, beforeEach, it, expect*/
-describe('module: Crawler', function () {
+describe('module: Parser', function () {
     var cheerio = require('cheerio'),
 
         // local dependencies
@@ -28,8 +28,5 @@ describe('module: Crawler', function () {
             expect(parser.parse(pages)).to.have.length(pages.length);
         });
 
-        it('RED : LEARN A BIT OF CHEERIO TO PARSE HTML/XML FILES', function() {
-            expect(2).to.equal(1);
-        });
     });
 });
