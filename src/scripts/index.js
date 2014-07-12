@@ -7,4 +7,4 @@ promise
 	.then(function () {
 		console.log('end');
 	})	
-	.done();
+    .done();

@@ -16,8 +16,8 @@ module.exports = function(Q, request) {
     this.MYCANTABRIA_PREFIX = 'http://mycantabria.com/inmueble.php?id_inmueble=';
 
     // properties
-    this.Q = Q;
-    this.request = request;
+//    this.Q = Q;
+//    this.request = request;
 
     /**
      * Given a property id, this module gets its content and returns it inside
@@ -38,10 +38,11 @@ module.exports = function(Q, request) {
             };
 
         for (i = 0; i < ids.length; i++) {
-            deferred = this.Q.defer();
+            deferred = Q.defer();
             options = new Options(this.MYCANTABRIA_PREFIX + ids[i]);
 
-            this.request(options, responseHandler);
+            console.log('URL:', options.url);
+            request(options, responseHandler);
 
             promises.push(deferred.promise);
         }

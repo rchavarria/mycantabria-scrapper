@@ -31,4 +31,4 @@ var Scrapper = module.exports = function () {
 };
 
 var mycantabriaScrapper = new Scrapper();
-mycantabriaScrapper.scrap('http://mycantabria.com');
+mycantabriaScrapper.scrap('http://mycantabria.com/inmueble.php?id_inmueble=2026');

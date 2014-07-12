@@ -28,7 +28,16 @@ module.exports = function () {
 
         // return the last chained promise
         return factory.createPromise(ids)
-            .then(function (v) { crawler.getContent(v); })
-            .then(function (v) { parser.parse(v); });
+            .then(function (v) { 
+                console.log('ids:', v);
+                return crawler.getContent(v);
+            })
+            .then(function (w) {
+                console.log('pages contents:', w);
+                return parser.parse(w);
+            })
+            .catch(function (err) {
+                console.log('an error happened:', err);
+            });
     };
 };
