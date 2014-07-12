@@ -26,8 +26,9 @@ module.exports = function () {
             crawler = new Crawler(Q, request),
             parser = new Parser(cheerio);
 
-        factory.createPromise(ids)
-            .then(crawler.getContent)
-            .then(parser.parse);
+        // return the last chained promise
+        return factory.createPromise(ids)
+            .then(function (v) { crawler.getContent(v); })
+            .then(function (v) { parser.parse(v); });
     };
 };
