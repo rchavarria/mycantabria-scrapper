@@ -9,6 +9,8 @@ module.exports = function(cheerio) {
     this.cheerio = cheerio;
 
     this.parse = function(propertyPagesContent) {
+        console.log('gonna parse', propertyPagesContent.length, 'pages');
+
         var i;
         for (i = 0; i < propertyPagesContent.length; i++) {
             console.log('page content:', propertyPagesContent[i]);

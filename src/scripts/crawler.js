@@ -1,4 +1,4 @@
-/*global module*/
+/*global module, console*/
 /**
  * Module that gets the content of the web pages that show properties by id.
  * Given a property id, this module gets its content and returns it inside
@@ -31,8 +31,10 @@ module.exports = function(Q, request) {
             promises = [],
             responseHandler = function (err, response, body) {
                 if (err) {
+                    console.log('err:', err);
                     deferred.reject(err);
                 } else {
+                    console.log('got body with length:', body.length);
                     deferred.resolve(body);
                 }
             };
