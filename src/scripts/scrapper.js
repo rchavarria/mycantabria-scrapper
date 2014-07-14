@@ -21,7 +21,8 @@ module.exports = function () {
         // 5. log to a file/console/whatever
         // 6. save information in a file/db/backend/whatever
         //
-        var ids = [2026, 2031, 2034],
+        var /*ids = [2026, 2031, 2034],*/
+            ids = [2026],
             factory = new Factory(Q),
             crawler = new Crawler(Q, request),
             parser = new Parser(cheerio);
@@ -30,7 +31,9 @@ module.exports = function () {
         return factory.createPromise(ids)
             .then(function (v) { 
                 console.log('ids:', v);
-                return crawler.getContent(v);
+                var promised = crawler.getContent(v);
+                console.log('promised:', promised);
+                return promised;
             })
             .then(function (w) {
                 console.log('pages contents:', w);

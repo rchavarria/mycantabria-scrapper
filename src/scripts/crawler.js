@@ -49,6 +49,6 @@ module.exports = function(Q, request) {
             promises.push(deferred.promise);
         }
 
-        return Q(promises).all();
+        return Q.all(promises);
     };
 };
