@@ -28,7 +28,7 @@ describe('module: Parser', function () {
             expect(parser.parse(pages)).to.have.length(pages.length);
         });
 
-        it('RED : TRY TO PREVENT NODEJS TO FINISH WAITING FOR PROMISES', function () {
+        it('RED : ANALYZE PROPERTY PAGE CONTENTS TO IDENTIFY WHICH ELEMENTS CONTAINS THE REQUIRED INFORMATION', function () {
             expect(2).to.be(1);
         });
     });

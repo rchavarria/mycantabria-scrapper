@@ -13,7 +13,7 @@ module.exports = function(cheerio) {
 
         var i;
         for (i = 0; i < propertyPagesContent.length; i++) {
-            console.log('page content:', propertyPagesContent[i]);
+            console.log('page', i, 'has length', propertyPagesContent[i].length);
         }
 
         return propertyPagesContent;
