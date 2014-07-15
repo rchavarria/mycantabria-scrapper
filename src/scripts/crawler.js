@@ -28,10 +28,6 @@ module.exports = function(Q, request) {
     // constants
     this.MYCANTABRIA_PREFIX = 'http://mycantabria.com/inmueble.php?id_inmueble=';
 
-    // properties
-//    this.Q = Q;
-//    this.request = request;
-
     /**
      * Given a property id, this module gets its content and returns it inside
      * a promise
