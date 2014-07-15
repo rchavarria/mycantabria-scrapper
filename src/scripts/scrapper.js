@@ -21,8 +21,7 @@ module.exports = function () {
         // 5. log to a file/console/whatever
         // 6. save information in a file/db/backend/whatever
         //
-        var /*ids = [2026, 2031, 2034],*/
-            ids = [2026],
+        var ids = [2026, 2031, 2034],
             factory = new Factory(Q),
             crawler = new Crawler(Q, request),
             parser = new Parser(cheerio);

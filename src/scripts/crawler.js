@@ -5,11 +5,24 @@
  * a promise
  */
 module.exports = function(Q, request) {
+
     function Options(url) {
         this.url = url;
         this.headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:29.0) Gecko/20100101 Firefox/29.0'
         };
+    }
+
+    function makeRequest(options, deferred) {
+        console.log('URL:', options.url);
+        request(options, function (err, response, body) {
+            if (err) {
+                console.error(err);
+                deferred.reject(err);
+            } else {
+                deferred.resolve(body);
+            }
+        });
     }
 
     // constants
@@ -28,23 +41,13 @@ module.exports = function(Q, request) {
         var i,
             options,
             deferred,
-            promises = [],
-            responseHandler = function (err, response, body) {
-                if (err) {
-                    console.log('err:', err);
-                    deferred.reject(err);
-                } else {
-                    console.log('got body with length:', body.length);
-                    deferred.resolve(body);
-                }
-            };
+            promises = [];
 
         for (i = 0; i < ids.length; i++) {
             deferred = Q.defer();
             options = new Options(this.MYCANTABRIA_PREFIX + ids[i]);
 
-            console.log('URL:', options.url);
-            request(options, responseHandler);
+            makeRequest(options, deferred);
 
             promises.push(deferred.promise);
         }
