@@ -50,6 +50,24 @@ describe('module: Crawler', function () {
             return expect(rejectedPromise).to.be.rejected;
         });
 
+        it('rejects the returned promise if any request fails', function() {
+            // configuring stub
+            var stubRequest = sinon.stub();
+
+            stubRequest.callsArgWith(1, null, null, 'content');
+            // reject third call
+            stubRequest.onThirdCall().callsArgWith(1, 'Calls the requests callback with an error string');
+
+            // create crawler with stubbed request
+            crawler = new Crawler(Q, stubRequest);
+
+            // test
+            var rejectedPromise = crawler.getContent([1, 2, 3]);
+            
+            // assertions
+            return expect(rejectedPromise).to.be.rejected;
+        });
+
         it('resolves a promise if request module gets content returning an array of values', function() {
             // configuring stub
             var bodyContent = 'some body content',
