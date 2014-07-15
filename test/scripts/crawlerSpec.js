@@ -65,5 +65,21 @@ describe('module: Crawler', function () {
             return expect(resolvedPromise).to.eventually.have.members(expectedPromiseValue);
         });
 
+        it('resolves promises if request module gets content returning an array of values', function() {
+            // configuring stub
+            var bodyContent = 'some body content',
+                stubRequest = sinon.stub(),
+                expectedPromiseValue = [ bodyContent, bodyContent, bodyContent ];
+
+            stubRequest.callsArgWith(1, null, null, bodyContent);
+            crawler = new Crawler(Q, stubRequest);
+
+            // test
+            var resolvedPromise = crawler.getContent([1, 2, 3]);
+
+            // assertions
+            return expect(resolvedPromise).to.eventually.have.members(expectedPromiseValue);
+        });
+
     });
 });

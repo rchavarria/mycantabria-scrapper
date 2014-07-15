@@ -13,18 +13,17 @@ module.exports = function(Q, request) {
         };
     }
 
+/*
     function makeRequest(options, deferred) {
-        console.log('URL:', options.url);
         request(options, function (err, response, body) {
             if (err) {
-                console.error(err);
                 deferred.reject(err);
             } else {
                 deferred.resolve(body);
             }
         });
     }
-
+*/
     // constants
     this.MYCANTABRIA_PREFIX = 'http://mycantabria.com/inmueble.php?id_inmueble=';
 
@@ -41,13 +40,23 @@ module.exports = function(Q, request) {
         var i,
             options,
             deferred,
-            promises = [];
+            promises = [],
+            responseHandler = function (err, response, body) {
+                if (err) {
+                    console.log('err:', err);
+                    deferred.reject(err);
+                } else {
+                    console.log('got body with length:', body.length);
+                    deferred.resolve(body);
+                }
+            };
 
         for (i = 0; i < ids.length; i++) {
             deferred = Q.defer();
             options = new Options(this.MYCANTABRIA_PREFIX + ids[i]);
 
-            makeRequest(options, deferred);
+            console.log('URL:', options.url);
+            request(options, responseHandler);
 
             promises.push(deferred.promise);
         }
