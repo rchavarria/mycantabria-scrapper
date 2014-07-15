@@ -11,7 +11,6 @@ module.exports = function () {
         Parser = require('./parser');
 
     this.scrap = function (site) {
-        console.log('site to be scrapped:', site);
         //
         // steps
         // 1. get properties ids (start returning a promise)
@@ -29,17 +28,13 @@ module.exports = function () {
         // return the last chained promise
         return factory.createPromise(ids)
             .then(function (v) { 
-                console.log('ids:', v);
-                var promised = crawler.getContent(v);
-                console.log('promised:', promised);
-                return promised;
+                return crawler.getContent(v);
             })
             .then(function (w) {
-                console.log('pages contents:', w);
                 return parser.parse(w);
             })
             .catch(function (err) {
-                console.log('an error happened:', err);
+                console.error('An error happened:', err);
             });
     };
 };
