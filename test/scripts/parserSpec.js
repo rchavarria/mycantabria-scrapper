@@ -33,16 +33,20 @@ describe('module: Parser', function () {
 
             beforeEach(function () {
                 var fs = require('fs'),
-                    propertyPageExample = fs.readFileSync('test/resources/example.html', { encoding: 'UTF8' });
+                    property2041 = fs.readFileSync('test/resources/2041.html', { encoding: 'UTF8' }),
+                    property2052 = fs.readFileSync('test/resources/2052.html', { encoding: 'UTF8' });
 
-                pages.push(propertyPageExample);
+                pages.push(property2041);
+                pages.push(property2052);
             });
 
             it('parses the property "reference"', function () {
                 var properties = parser.parse(pages),
-                    property = properties[0];
+                    property2041 = properties[0],
+                    property2052 = properties[1];
                 
-                expect(property.reference).to.equal('ID 2041');
+                expect(property2041.reference).to.equal('ID 2041');
+                expect(property2052.reference).to.equal('ID 2052');
             });
         });
     });
