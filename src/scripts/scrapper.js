@@ -10,7 +10,7 @@ module.exports = function () {
         Crawler = require('./crawler'),
         Parser = require('./parser');
 
-    this.scrap = function (site) {
+    this.scrap = function () {
         //
         // steps
         // 1. get properties ids (start returning a promise)

@@ -14,7 +14,6 @@ module.exports = function(Q, request) {
     }
 
     function makeRequest(options, deferred) {
-        console.log('URL:', options.url);
         request(options, function (err, response, body) {
             if (err) {
                 deferred.reject(err);

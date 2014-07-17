@@ -1,4 +1,4 @@
-/*global require, describe, beforeEach, it, expect*/
+/*global require, describe, beforeEach, it, expect, console*/
 describe('module: Parser', function () {
     var cheerio = require('cheerio'),
 
@@ -28,8 +28,19 @@ describe('module: Parser', function () {
             expect(parser.parse(pages)).to.have.length(pages.length);
         });
 
-        it('RED : ANALYZE PROPERTY PAGE CONTENTS TO IDENTIFY WHICH ELEMENTS CONTAINS THE REQUIRED INFORMATION', function () {
-            expect(2).to.be(1);
+        describe('#parsing Content', function () {
+            var propertyPageExample;
+
+            beforeEach(function () {
+                var fs = require('fs');
+
+                propertyPageExample = fs.readFileSync('test/resources/example.html', { encoding: 'UTF8' });
+                console.log('file example.html contents:', propertyPageExample);
+            });
+
+            it('parses the property "reference"', function () {
+                expect(2).to.equal(1);
+            });
         });
     });
 });
