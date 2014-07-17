@@ -18,9 +18,8 @@ module.exports = function(cheerio) {
      * ...
      * </div>
      */
-    function parseReference($) {
-        var tds = $('td', '.nwDetalleDatosCabecera'),
-            reference = tds[4] &&
+    function parseReference(tds) {
+        var reference = tds[4] &&
             	tds[4].children[0] && 
             	tds[4].children[0].children[0] &&
             	tds[4].children[0].children[0].data;
@@ -39,9 +38,8 @@ module.exports = function(cheerio) {
      * ...
      * </div>
      */
-    function parseProvince($) {
-        var tds = $('td', '.nwDetalleDatosCabecera'),
-            province = tds[6] && 
+    function parseProvince(tds) {
+        var province = tds[6] && 
             	tds[6].children[0] &&
             	tds[6].children[0].data;
 
@@ -59,9 +57,8 @@ module.exports = function(cheerio) {
      * ...
      * </div>
      */
-    function parsePrice($) {
-        var tds = $('td', '.nwDetalleDatosCabecera'),
-            strPrice = tds[8] && 
+    function parsePrice(tds) {
+        var strPrice = tds[8] && 
             	tds[8].children[0] &&
             	tds[8].children[0].children[0] &&
             	tds[8].children[0].children[0].data,
@@ -71,12 +68,13 @@ module.exports = function(cheerio) {
     }
 
     function parseProperty(content) {
-        var $ = cheerio.load(content);
+        var $ = cheerio.load(content),
+        	tds = $('td', '.nwDetalleDatosCabecera');
 
         return { 
-            reference: parseReference($),
-            province: parseProvince($),
-            price: parsePrice($)
+            reference: parseReference(tds),
+            province: parseProvince(tds),
+            price: parsePrice(tds)
         };
     }
 
