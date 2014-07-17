@@ -6,18 +6,45 @@
  * Useful to save current properties shown in mycantabria.com
  */
 module.exports = function(cheerio) {
-    this.cheerio = cheerio;
+
+    /**
+     * reference is in a TD with this structure
+     * 
+     * <div class="nwDetalleDatosCabecera">
+     * ...
+     *     <td>
+     *         <b>reference</b>
+     *     <td>
+     * ...
+     * </div>
+     */
+    function parseReference($) {
+        var tds = $('td', '.nwDetalleDatosCabecera'),
+            referenceValueTD = tds[4],
+            bChildOfTD = referenceValueTD && referenceValueTD.children[0],
+            reference = bChildOfTD && bChildOfTD.children[0].data;
+
+        return reference;
+    }
+
+    function parseProperty(content) {
+        var $ = cheerio.load(content);
+
+        return { 
+            reference: parseReference($)
+        };
+    }
 
     this.parse = function(propertyPagesContent) {
         console.log('gonna parse', propertyPagesContent.length, 'pages');
 
-        var i, properties = [];
+        var properties = [],
+            content,
+            i;
 
         for (i = 0; i < propertyPagesContent.length; i++) {
-            console.log('page', i, 'has length', propertyPagesContent[i].length);
-            properties.push({
-                reference: 'ID 2041'
-            });
+            content = propertyPagesContent[i];
+            properties.push(parseProperty(content));
         }
 
         return properties;
