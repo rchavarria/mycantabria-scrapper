@@ -20,9 +20,10 @@ module.exports = function(cheerio) {
      */
     function parseReference($) {
         var tds = $('td', '.nwDetalleDatosCabecera'),
-            referenceValueTD = tds[4],
-            bChildOfTD = referenceValueTD && referenceValueTD.children[0],
-            reference = bChildOfTD && bChildOfTD.children[0].data;
+            reference = tds[4] &&
+            	tds[4].children[0] && 
+            	tds[4].children[0].children[0] &&
+            	tds[4].children[0].children[0].data;
 
         return reference;
     }
