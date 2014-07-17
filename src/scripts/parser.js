@@ -27,11 +27,32 @@ module.exports = function(cheerio) {
         return reference;
     }
 
+    /**
+     * reference is in a TD with this structure
+     * 
+     * <div class="nwDetalleDatosCabecera">
+     * ...
+     *     <td>
+     *         province
+     *     <td>
+     * ...
+     * </div>
+     */
+    function parseProvince($) {
+        var tds = $('td', '.nwDetalleDatosCabecera'),
+            province = tds[6] && 
+            	tds[6].children[0] &&
+            	tds[6].children[0].data;
+
+        return province;
+    }
+
     function parseProperty(content) {
         var $ = cheerio.load(content);
 
         return { 
-            reference: parseReference($)
+            reference: parseReference($),
+            province: parseProvince($)
         };
     }
 
