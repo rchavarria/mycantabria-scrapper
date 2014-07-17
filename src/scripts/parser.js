@@ -48,12 +48,35 @@ module.exports = function(cheerio) {
         return province;
     }
 
+    /**
+     * reference is in a TD with this structure
+     * 
+     * <div class="nwDetalleDatosCabecera">
+     * ...
+     *     <td>
+     *         <b>123.456,78</b>
+     *     <td>
+     * ...
+     * </div>
+     */
+    function parsePrice($) {
+        var tds = $('td', '.nwDetalleDatosCabecera'),
+            strPrice = tds[8] && 
+            	tds[8].children[0] &&
+            	tds[8].children[0].children[0] &&
+            	tds[8].children[0].children[0].data,
+            price = strPrice ? parseFloat(strPrice.replace('.', '').replace(',', '')) : 0;
+
+        return price;
+    }
+
     function parseProperty(content) {
         var $ = cheerio.load(content);
 
         return { 
             reference: parseReference($),
-            province: parseProvince($)
+            province: parseProvince($),
+            price: parsePrice($)
         };
     }
 
