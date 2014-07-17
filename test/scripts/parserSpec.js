@@ -47,6 +47,11 @@ describe.only('module: Parser', function () {
                 expect(property2052.reference).to.equal('ID 2052');
             });
 
+            it('parses the property "province"', function () {
+                expect(property2041.province).to.equal('CANTABRIA');
+                expect(property2052.province).to.equal('CANTABRIA');
+            });
+
         });
     });
 });
