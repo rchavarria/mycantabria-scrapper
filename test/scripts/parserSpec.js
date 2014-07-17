@@ -1,4 +1,4 @@
-/*global require, describe, beforeEach, it, expect, console*/
+/*global require, describe, beforeEach, it, expect*/
 describe('module: Parser', function () {
     var cheerio = require('cheerio'),
 
@@ -29,17 +29,18 @@ describe('module: Parser', function () {
         });
 
         describe('#parsing Content', function () {
-            var propertyPageExample;
+            var pages = [];
 
             beforeEach(function () {
-                var fs = require('fs');
+                var fs = require('fs'),
+                    propertyPageExample = fs.readFileSync('test/resources/example.html', { encoding: 'UTF8' });
 
-                propertyPageExample = fs.readFileSync('test/resources/example.html', { encoding: 'UTF8' });
-                console.log('file example.html contents:', propertyPageExample);
+                pages.push(propertyPageExample);
             });
 
             it('parses the property "reference"', function () {
-                expect(2).to.equal(1);
+                var property = parser.parse(pages);
+                expect(property.reference).to.equal('ID 2041');
             });
         });
     });
