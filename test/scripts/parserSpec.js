@@ -52,7 +52,7 @@ describe.only('module: Parser', function () {
                 expect(property2052.province).to.equal('CANTABRIA');
             });
 
-            it('parses the property "price"', function () {
+            it('parses the property "price" and returns it in cents of Euro', function () {
                 expect(property2041.price).to.equal(210 * 1000 * 100);
                 expect(property2052.price).to.equal(200 * 1000 * 100);
             });
