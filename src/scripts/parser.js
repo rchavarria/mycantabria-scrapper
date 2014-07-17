@@ -11,11 +11,15 @@ module.exports = function(cheerio) {
     this.parse = function(propertyPagesContent) {
         console.log('gonna parse', propertyPagesContent.length, 'pages');
 
-        var i;
+        var i, properties = [];
+
         for (i = 0; i < propertyPagesContent.length; i++) {
             console.log('page', i, 'has length', propertyPagesContent[i].length);
+            properties.push({
+                reference: 'ID 2041'
+            });
         }
 
-        return propertyPagesContent;
+        return properties;
     };
 };

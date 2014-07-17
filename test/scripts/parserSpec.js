@@ -39,7 +39,9 @@ describe('module: Parser', function () {
             });
 
             it('parses the property "reference"', function () {
-                var property = parser.parse(pages);
+                var properties = parser.parse(pages),
+                    property = properties[0];
+                
                 expect(property.reference).to.equal('ID 2041');
             });
         });
