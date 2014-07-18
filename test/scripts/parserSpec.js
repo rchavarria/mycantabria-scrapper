@@ -72,6 +72,11 @@ describe.only('module: Parser', function () {
                 expect(property2052.zone).to.equal('ARGOMILLA DE CAYON');
             });
 
+            it('parses the property "rooms"', function () {
+                expect(property2041.rooms).to.equal(4);
+                expect(property2052.rooms).to.equal(5);
+            });
+
         });
     });
 });
