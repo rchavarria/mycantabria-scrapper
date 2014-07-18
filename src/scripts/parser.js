@@ -8,6 +8,15 @@
 module.exports = function(cheerio) {
 
     /**
+     * extracts data from the td's first child 
+     */
+    function childData(td) {
+        return td &&
+            td.children[0] &&
+            td.children[0].data;
+    }
+
+    /**
      * reference is in a TD with this structure
      * 
      * <div class="nwDetalleDatosCabecera">
@@ -39,11 +48,7 @@ module.exports = function(cheerio) {
      * </div>
      */
     function parseProvince(tds) {
-        var province = tds[6] && 
-            	tds[6].children[0] &&
-            	tds[6].children[0].data;
-
-        return province;
+        return childData(tds[6]);
     }
 
     /**
@@ -79,11 +84,7 @@ module.exports = function(cheerio) {
      * </div>
      */
     function parseCity(tds) {
-        var city = tds[10] && 
-                tds[10].children[0] &&
-                tds[10].children[0].data;
-
-        return city;
+        return childData(tds[10]);
     }
 
     function parseProperty(content) {
