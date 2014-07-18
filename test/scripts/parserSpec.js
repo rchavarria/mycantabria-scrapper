@@ -82,6 +82,11 @@ describe.only('module: Parser', function () {
                 expect(property2052.operation).to.equal('Alquiler');
             });
 
+            it('parses the property "bathrooms"', function () {
+                expect(property2041.bathrooms).to.equal(2);
+                expect(property2052.bathrooms).to.equal(1);
+            });
+
         });
     });
 });
