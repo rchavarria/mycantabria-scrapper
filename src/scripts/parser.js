@@ -17,6 +17,16 @@ module.exports = function(cheerio) {
     }
 
     /**
+     * extracts data from the td's first grandchild 
+     */
+    function grandchildData(td) {
+        return td &&
+            td.children[0] &&
+            td.children[0].children[0] &&
+            td.children[0].children[0].data;
+    }
+
+    /**
      * reference is in a TD with this structure
      * 
      * <div class="nwDetalleDatosCabecera">
@@ -28,12 +38,7 @@ module.exports = function(cheerio) {
      * </div>
      */
     function parseReference(tds) {
-        var reference = tds[4] &&
-            	tds[4].children[0] && 
-            	tds[4].children[0].children[0] &&
-            	tds[4].children[0].children[0].data;
-
-        return reference;
+        return grandchildData(tds[4]);
     }
 
     /**
@@ -63,10 +68,7 @@ module.exports = function(cheerio) {
      * </div>
      */
     function parsePrice(tds) {
-        var strPrice = tds[8] && 
-            	tds[8].children[0] &&
-            	tds[8].children[0].children[0] &&
-            	tds[8].children[0].children[0].data,
+        var strPrice = grandchildData(tds[8]),
             price = strPrice ? parseFloat(strPrice.replace('.', '').replace(',', '')) : 0;
 
         return price;
