@@ -67,6 +67,25 @@ module.exports = function(cheerio) {
         return price;
     }
 
+    /**
+     * reference is in a TD with this structure
+     * 
+     * <div class="nwDetalleDatosCabecera">
+     * ...
+     *     <td>
+     *         city
+     *     <td>
+     * ...
+     * </div>
+     */
+    function parseCity(tds) {
+        var city = tds[10] && 
+                tds[10].children[0] &&
+                tds[10].children[0].data;
+
+        return city;
+    }
+
     function parseProperty(content) {
         var $ = cheerio.load(content),
         	tds = $('td', '.nwDetalleDatosCabecera');
@@ -74,7 +93,8 @@ module.exports = function(cheerio) {
         return { 
             reference: parseReference(tds),
             province: parseProvince(tds),
-            price: parsePrice(tds)
+            price: parsePrice(tds),
+            city: parseCity(tds)
         };
     }
 
