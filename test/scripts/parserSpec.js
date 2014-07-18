@@ -77,6 +77,11 @@ describe.only('module: Parser', function () {
                 expect(property2052.rooms).to.equal(5);
             });
 
+            it('parses the property "operation"', function () {
+                expect(property2041.operation).to.equal('Venta');
+                expect(property2052.operation).to.equal('Alquiler');
+            });
+
         });
     });
 });
