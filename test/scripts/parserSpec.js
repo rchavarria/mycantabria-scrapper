@@ -57,6 +57,11 @@ describe.only('module: Parser', function () {
                 expect(property2052.price).to.equal(200 * 1000 * 100);
             });
 
+            it('parses the property "city"', function () {
+                expect(property2041.city).to.equal('SANTA MARIA CAYON');
+                expect(property2052.city).to.equal('SANTA MARIA CAYON 2052');
+            });
+
         });
     });
 });
