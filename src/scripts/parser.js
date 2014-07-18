@@ -70,6 +70,13 @@ module.exports = function(cheerio) {
         return childData(tds[14]);
     }
 
+    function parseRooms(tds) {
+        var strRooms = childData(tds[16]),
+            rooms = parseInt(strRooms, 10);
+
+        return rooms;
+    }
+
     function parseProperty(content) {
         var $ = cheerio.load(content),
         	tds = $('td', '.nwDetalleDatosCabecera');
@@ -80,7 +87,8 @@ module.exports = function(cheerio) {
             price: parsePrice(tds),
             city: parseCity(tds),
             type: parseType(tds),
-            zone: parseZone(tds)
+            zone: parseZone(tds),
+            rooms: parseRooms(tds)
         };
     }
 
