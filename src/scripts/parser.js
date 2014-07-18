@@ -53,7 +53,8 @@ module.exports = function(cheerio) {
 
     function parsePrice(tds) {
         var strPrice = grandchildData(tds[8]),
-            price = strPrice ? parseFloat(strPrice.replace('.', '').replace(',', '')) : 0;
+            priceToParse = strPrice ? strPrice.replace('.', '').replace(',', '') : '',
+            price = parseInt(priceToParse, 10);
 
         return price;
     }
