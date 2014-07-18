@@ -67,6 +67,11 @@ describe.only('module: Parser', function () {
                 expect(property2052.type).to.equal('CASONA');
             });
 
+            it('parses the property "zone"', function () {
+                expect(property2041.zone).to.equal('SAN ROMAN DE CAYON');
+                expect(property2052.zone).to.equal('ARGOMILLA DE CAYON');
+            });
+
         });
     });
 });
