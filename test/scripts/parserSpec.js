@@ -62,6 +62,11 @@ describe.only('module: Parser', function () {
                 expect(property2052.city).to.equal('SANTA MARIA CAYON 2052');
             });
 
+            it('parses the property "type"', function () {
+                expect(property2041.type).to.equal('CASA');
+                expect(property2052.type).to.equal('CASONA');
+            });
+
         });
     });
 });
