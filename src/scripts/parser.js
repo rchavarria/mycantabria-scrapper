@@ -9,6 +9,14 @@ module.exports = function(cheerio) {
 
     /**
      * extracts data from the td's first child 
+     * 
+     * <div class="nwDetalleDatosCabecera">
+     * ...
+     *     <td>
+     *         child
+     *     <td>
+     * ...
+     * </div>
      */
     function childData(td) {
         return td &&
@@ -17,7 +25,16 @@ module.exports = function(cheerio) {
     }
 
     /**
-     * extracts data from the td's first grandchild 
+     * extracts data from the td's first grandchild, 
+     * a TD has other nested element
+     * 
+     * <div class="nwDetalleDatosCabecera">
+     * ...
+     *     <td>
+     *         <b>grandchild</b>
+     *     <td>
+     * ...
+     * </div>
      */
     function grandchildData(td) {
         return td &&
@@ -26,47 +43,14 @@ module.exports = function(cheerio) {
             td.children[0].children[0].data;
     }
 
-    /**
-     * reference is in a TD with this structure
-     * 
-     * <div class="nwDetalleDatosCabecera">
-     * ...
-     *     <td>
-     *         <b>reference</b>
-     *     <td>
-     * ...
-     * </div>
-     */
     function parseReference(tds) {
         return grandchildData(tds[4]);
     }
 
-    /**
-     * reference is in a TD with this structure
-     * 
-     * <div class="nwDetalleDatosCabecera">
-     * ...
-     *     <td>
-     *         province
-     *     <td>
-     * ...
-     * </div>
-     */
     function parseProvince(tds) {
         return childData(tds[6]);
     }
 
-    /**
-     * reference is in a TD with this structure
-     * 
-     * <div class="nwDetalleDatosCabecera">
-     * ...
-     *     <td>
-     *         <b>123.456,78</b>
-     *     <td>
-     * ...
-     * </div>
-     */
     function parsePrice(tds) {
         var strPrice = grandchildData(tds[8]),
             price = strPrice ? parseFloat(strPrice.replace('.', '').replace(',', '')) : 0;
@@ -74,47 +58,14 @@ module.exports = function(cheerio) {
         return price;
     }
 
-    /**
-     * reference is in a TD with this structure
-     * 
-     * <div class="nwDetalleDatosCabecera">
-     * ...
-     *     <td>
-     *         city
-     *     <td>
-     * ...
-     * </div>
-     */
     function parseCity(tds) {
         return childData(tds[10]);
     }
 
-    /**
-     * reference is in a TD with this structure
-     * 
-     * <div class="nwDetalleDatosCabecera">
-     * ...
-     *     <td>
-     *         type
-     *     <td>
-     * ...
-     * </div>
-     */
     function parseType(tds) {
         return childData(tds[12]);
     }
 
-    /**
-     * reference is in a TD with this structure
-     * 
-     * <div class="nwDetalleDatosCabecera">
-     * ...
-     *     <td>
-     *         zone
-     *     <td>
-     * ...
-     * </div>
-     */
     function parseZone(tds) {
         return childData(tds[14]);
     }
