@@ -89,7 +89,7 @@ describe.only('module: Parser', function () {
 
             it('parses the property "energyCertification"', function () {
                 expect(property2041.energyCertification).to.equal('Cero pelotero');
-                expect(property2052.energyCertification).to.equal('En tramite');
+                expect(property2052.energyCertification).to.equal('En Tramite');
             });
 
         });

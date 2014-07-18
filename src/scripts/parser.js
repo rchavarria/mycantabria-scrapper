@@ -89,6 +89,10 @@ module.exports = function(cheerio) {
         return bathrooms;
     }
 
+    function parseEnergyCertification(tds) {
+        return childData(tds[22]);
+    }
+
     function parseProperty(content) {
         var $ = cheerio.load(content),
         	tds = $('td', '.nwDetalleDatosCabecera');
@@ -102,7 +106,8 @@ module.exports = function(cheerio) {
             zone: parseZone(tds),
             rooms: parseRooms(tds),
             operation: parseOperation(tds),
-            bathrooms: parseBathrooms(tds)
+            bathrooms: parseBathrooms(tds),
+            energyCertification: parseEnergyCertification(tds)
         };
     }
 
