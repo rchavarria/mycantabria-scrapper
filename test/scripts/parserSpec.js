@@ -92,6 +92,11 @@ describe.only('module: Parser', function () {
                 expect(property2052.energyCertification).to.equal('En Tramite');
             });
 
+            it('parses the property "description"', function () {
+                expect(property2041.description).to.contain('superficie de 250 m2');
+                expect(property2052.description).to.contain('superficie de la vivienda es de 400 m2');
+            });
+
         });
     });
 });
