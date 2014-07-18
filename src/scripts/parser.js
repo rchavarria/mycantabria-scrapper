@@ -104,6 +104,21 @@ module.exports = function(cheerio) {
         return childData(tds[12]);
     }
 
+    /**
+     * reference is in a TD with this structure
+     * 
+     * <div class="nwDetalleDatosCabecera">
+     * ...
+     *     <td>
+     *         zone
+     *     <td>
+     * ...
+     * </div>
+     */
+    function parseZone(tds) {
+        return childData(tds[14]);
+    }
+
     function parseProperty(content) {
         var $ = cheerio.load(content),
         	tds = $('td', '.nwDetalleDatosCabecera');
@@ -113,7 +128,8 @@ module.exports = function(cheerio) {
             province: parseProvince(tds),
             price: parsePrice(tds),
             city: parseCity(tds),
-            type: parseType(tds)
+            type: parseType(tds),
+            zone: parseZone(tds)
         };
     }
 
