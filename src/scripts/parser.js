@@ -8,6 +8,21 @@
 module.exports = function(cheerio) {
 
     /**
+     * extracts text from the td's first child 
+     * 
+     * <div class="nwDetalleDatosCabecera">
+     * ...
+     *     <td>
+     *         child
+     *     <td>
+     * ...
+     * </div>
+     */
+    function childText(td) {
+        return td.text();
+    }
+
+    /**
      * extracts data from the td's first child 
      * 
      * <div class="nwDetalleDatosCabecera">
@@ -48,7 +63,7 @@ module.exports = function(cheerio) {
     }
 
     function parseProvince(tds) {
-        return childData(tds[6]);
+        return childText(tds.eq(6));
     }
 
     function parsePrice(tds) {
