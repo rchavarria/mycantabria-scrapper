@@ -1,5 +1,5 @@
 /*global require, describe, beforeEach, it, expect*/
-describe.only('module: Parser', function () {
+describe('module: Parser', function () {
     var cheerio = require('cheerio'),
 
         // local dependencies
