@@ -93,16 +93,15 @@ module.exports = function(cheerio) {
         return childData(tds[22]);
     }
 
-    function parseDescription($) {
-        return $('.nwDetalleDatosCabecera')
-            .find('div')
-            .last()
-            .text();        // text of last div element
+    function parseDescription(detailedData) {
+        // text of last div element
+        return detailedData.find('div').last().text();
     }
 
     function parseProperty(content) {
         var $ = cheerio.load(content),
-        	tds = $('td', '.nwDetalleDatosCabecera');
+            detailedData = $('.nwDetalleDatosCabecera'),
+        	tds = detailedData.find('td');
 
         return { 
             reference: parseReference(tds),
@@ -115,7 +114,7 @@ module.exports = function(cheerio) {
             operation: parseOperation(tds),
             bathrooms: parseBathrooms(tds),
             energyCertification: parseEnergyCertification(tds),
-            description: parseDescription($)
+            description: parseDescription(detailedData)
         };
     }
 
