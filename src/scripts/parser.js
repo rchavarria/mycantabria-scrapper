@@ -23,23 +23,6 @@ module.exports = function(cheerio) {
     }
 
     /**
-     * extracts data from the td's first child 
-     * 
-     * <div class="nwDetalleDatosCabecera">
-     * ...
-     *     <td>
-     *         child
-     *     <td>
-     * ...
-     * </div>
-     */
-    function childData(td) {
-        return td &&
-            td.children[0] &&
-            td.children[0].data;
-    }
-
-    /**
      * extracts data from the td's first grandchild, 
      * a TD has other nested element
      * 
@@ -75,37 +58,37 @@ module.exports = function(cheerio) {
     }
 
     function parseCity(tds) {
-        return childData(tds[10]);
+        return childText(tds.eq(10));
     }
 
     function parseType(tds) {
-        return childData(tds[12]);
+        return childText(tds.eq(12));
     }
 
     function parseZone(tds) {
-        return childData(tds[14]);
+        return childText(tds.eq(14));
     }
 
     function parseRooms(tds) {
-        var strRooms = childData(tds[16]),
+        var strRooms = childText(tds.eq(16)),
             rooms = parseInt(strRooms, 10);
 
         return rooms;
     }
 
     function parseOperation(tds) {
-        return childData(tds[18]);
+        return childText(tds.eq(18));
     }
 
     function parseBathrooms(tds) {
-        var strBathrooms = childData(tds[20]),
+        var strBathrooms = childText(tds.eq(20)),
             bathrooms = parseInt(strBathrooms, 10);
 
         return bathrooms;
     }
 
     function parseEnergyCertification(tds) {
-        return childData(tds[22]);
+        return childText(tds.eq(22));
     }
 
     function parseDescription(detailedData) {
