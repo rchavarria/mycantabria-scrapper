@@ -97,6 +97,9 @@ describe('module: Parser', function () {
                 expect(property2052.description).to.contain('superficie de la vivienda es de 400 m2');
             });
 
+            it('RED : PARSER SHOULD RETURN A PROMISE, TRY MAKE ASSERTIONS WITH .THEN()', function() {
+                expect(2).to.be(1);
+            });
         });
     });
 });
