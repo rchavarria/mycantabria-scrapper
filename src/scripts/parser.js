@@ -22,27 +22,8 @@ module.exports = function(cheerio) {
         return td.text();
     }
 
-    /**
-     * extracts data from the td's first grandchild, 
-     * a TD has other nested element
-     * 
-     * <div class="nwDetalleDatosCabecera">
-     * ...
-     *     <td>
-     *         <b>grandchild</b>
-     *     <td>
-     * ...
-     * </div>
-     */
-    function grandchildData(td) {
-        return td &&
-            td.children[0] &&
-            td.children[0].children[0] &&
-            td.children[0].children[0].data;
-    }
-
     function parseReference(tds) {
-        return grandchildData(tds[4]);
+        return childText(tds.eq(4));
     }
 
     function parseProvince(tds) {
@@ -50,7 +31,7 @@ module.exports = function(cheerio) {
     }
 
     function parsePrice(tds) {
-        var strPrice = grandchildData(tds[8]),
+        var strPrice = childText(tds.eq(8)),
             priceToParse = strPrice ? strPrice.replace('.', '').replace(',', '') : '',
             price = parseInt(priceToParse, 10);
 
