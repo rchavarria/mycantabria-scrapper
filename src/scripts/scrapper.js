@@ -23,7 +23,7 @@ module.exports = function () {
         var ids = [2026, 2031, 2034],
             factory = new Factory(Q),
             crawler = new Crawler(Q, request),
-            parser = new Parser(cheerio);
+            parser = new Parser(cheerio, factory);
 
         // return the last chained promise
         return factory.createPromise(ids)
