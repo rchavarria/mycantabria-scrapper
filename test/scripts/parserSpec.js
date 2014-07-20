@@ -107,49 +107,4 @@ describe('module: Parser', function () {
         });
     });
 
-    describe('#parseWithPromises', function () {
-        var parser;
-
-        beforeEach(function () {
-            parser = new Parser(cheerio, new Factory(Q));
-        });
-
-        it('has a method called parseWithPromises', function () {
-            return expect(parser.parseWithPromises).not.to.be.undefined;
-        });
-
-        it('eventually returns as many property information objects as pages passed as parameters', function () {
-            var pages = [1, 2, 3];
-
-            expect(parser.parseWithPromises(pages)).to.eventually.have.length(pages.length);
-        });
-
-        describe('#parsing Content', function () {
-            var promise, property2041, property2052;
-
-            beforeEach(function () {
-                var fs = require('fs'),
-                    content2041 = fs.readFileSync('test/resources/2041.html', { encoding: 'UTF8' }),
-                    content2052 = fs.readFileSync('test/resources/2052.html', { encoding: 'UTF8' }),
-                    pages = [ content2041, content2052 ];
-
-                promise = parser.parseWithPromises(pages);
-                promise.then(function (properties) {
-                    property2041 = properties[0];
-                    property2052 = properties[1];
-                });
-            });
-
-            it('promise will be fullfillled', function () {
-                return expect(promise).to.eventually.be.fullfillled;
-            });
-
-            it('parses the property "reference"', function () {
-                expect(property2041.reference).to.equal('ID 2041');
-                expect(property2052.reference).to.equal('ID 2052');
-            });
-
-        });
-    });
-
 });
