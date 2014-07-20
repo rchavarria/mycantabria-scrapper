@@ -111,4 +111,20 @@ module.exports = function(cheerio) {
 
         return properties;
     };
+
+    this.parseWithPromises = function(propertyPagesContent) {
+        console.log('gonna parse', propertyPagesContent.length, 'pages');
+
+        var properties = [],
+            content,
+            i;
+
+        for (i = 0; i < propertyPagesContent.length; i++) {
+            content = propertyPagesContent[i];
+            properties.push(parseProperty(content));
+        }
+
+        return properties;
+    };
+
 };
