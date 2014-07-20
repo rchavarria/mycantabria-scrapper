@@ -33,6 +33,9 @@ module.exports = function () {
             .then(function (w) {
                 return parser.parse(w);
             })
+            .then(function (properties) {
+                console.log('properties', properties);
+            })
             .catch(function (err) {
                 console.error('An error happened:', err);
             });
