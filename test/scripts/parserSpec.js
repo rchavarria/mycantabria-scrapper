@@ -21,13 +21,13 @@ describe('module: Parser', function () {
         });
 
         it('has a method called parse', function () {
-            return expect(parser.parseWithPromises).not.to.be.undefined;
+            return expect(parser.parse).not.to.be.undefined;
         });
 
         it('eventually returns as many property information objects as pages passed as parameters', function () {
             var pages = [1, 2, 3];
 
-            expect(parser.parseWithPromises(pages)).to.eventually.have.length(pages.length);
+            expect(parser.parse(pages)).to.eventually.have.length(pages.length);
         });
 
         describe('#parsing Content', function () {
@@ -39,7 +39,7 @@ describe('module: Parser', function () {
                     content2052 = fs.readFileSync('test/resources/2052.html', { encoding: 'UTF8' }),
                     pages = [ content2041, content2052 ];
 
-                promise = parser.parseWithPromises(pages);
+                promise = parser.parse(pages);
                 promise.then(function (properties) {
                     property2041 = properties[0];
                     property2052 = properties[1];
