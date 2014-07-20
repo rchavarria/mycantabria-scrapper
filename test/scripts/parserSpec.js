@@ -21,13 +21,13 @@ describe('module: Parser', function () {
         });
 
         it('has a method called parse', function () {
-            return expect(parser.parse).not.to.be.undefined;
+            return expect(parser.parseWithPromises).not.to.be.undefined;
         });
 
-        it('returns as many property information objects as pages passed as parameters', function () {
+        it('eventually returns as many property information objects as pages passed as parameters', function () {
             var pages = [1, 2, 3];
 
-            expect(parser.parse(pages)).to.have.length(pages.length);
+            expect(parser.parseWithPromises(pages)).to.eventually.have.length(pages.length);
         });
 
         describe('#parsing Content', function () {
