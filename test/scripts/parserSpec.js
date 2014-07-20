@@ -17,7 +17,7 @@ describe('module: Parser', function () {
         var parser;
 
         beforeEach(function () {
-            parser = new Parser(cheerio);
+            parser = new Parser(cheerio, new Factory(Q));
         });
 
         it('has a method called parse', function () {
@@ -31,17 +31,23 @@ describe('module: Parser', function () {
         });
 
         describe('#parsing Content', function () {
-            var property2041, property2052;
+            var promise, property2041, property2052;
 
             beforeEach(function () {
                 var fs = require('fs'),
                     content2041 = fs.readFileSync('test/resources/2041.html', { encoding: 'UTF8' }),
                     content2052 = fs.readFileSync('test/resources/2052.html', { encoding: 'UTF8' }),
-                    pages = [ content2041, content2052 ],
-                    properties = parser.parse(pages);
+                    pages = [ content2041, content2052 ];
 
-                property2041 = properties[0];
-                property2052 = properties[1];
+                promise = parser.parseWithPromises(pages);
+                promise.then(function (properties) {
+                    property2041 = properties[0];
+                    property2052 = properties[1];
+                });
+            });
+
+            it('promise will be fullfillled', function () {
+                return expect(promise).to.eventually.be.fullfillled;
             });
 
             it('parses the property "reference"', function () {
@@ -101,7 +107,7 @@ describe('module: Parser', function () {
         });
     });
 
-    describe.only('#parseWithPromises', function () {
+    describe('#parseWithPromises', function () {
         var parser;
 
         beforeEach(function () {
