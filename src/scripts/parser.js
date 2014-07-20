@@ -5,7 +5,7 @@
  * and then populate a database or a set of files.
  * Useful to save current properties shown in mycantabria.com
  */
-module.exports = function(cheerio) {
+module.exports = function(cheerio, factory) {
 
     /**
      * extracts text from the td's first child 
@@ -124,7 +124,7 @@ module.exports = function(cheerio) {
             properties.push(parseProperty(content));
         }
 
-        return properties;
+        return factory.createPromise(properties);
     };
 
 };

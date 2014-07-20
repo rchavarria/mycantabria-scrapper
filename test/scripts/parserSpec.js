@@ -1,8 +1,10 @@
 /*global require, describe, beforeEach, it, expect*/
 describe('module: Parser', function () {
     var cheerio = require('cheerio'),
+        Q = require('q'),
 
         // local dependencies
+        Factory = require('../../src/scripts/factory'),
         Parser = require('../../src/scripts/parser');
 
     it('creates a Parser instance', function () {
@@ -99,18 +101,18 @@ describe('module: Parser', function () {
 
     });
 
-    describe('#parseWithPromises', function () {
+    describe.only('#parseWithPromises', function () {
         var parser;
 
         beforeEach(function () {
-            parser = new Parser(cheerio);
+            parser = new Parser(cheerio, new Factory(Q));
         });
 
         it('has a method called parseWithPromises', function () {
             return expect(parser.parseWithPromises).not.to.be.undefined;
         });
 
-        it('returns as many property information objects as pages passed as parameters', function () {
+        it('eventually returns as many property information objects as pages passed as parameters', function () {
             var pages = [1, 2, 3];
 
             expect(parser.parseWithPromises(pages)).to.eventually.have.length(pages.length);
