@@ -16,9 +16,11 @@ describe('module: Storage', function () {
         var fs = require('fs');
 
         afterEach(function () {
-            if (fs.existsSync('properties')) {
-                fs.rmdirSync('properties');
-            }
+            fs.exists('properties', function (exists) {
+                if (exists) {
+                    fs.rmdir('properties');
+                }
+            });
         });
 
         it('starts without a "properties" folder', function () {
