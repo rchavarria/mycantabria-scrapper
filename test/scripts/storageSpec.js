@@ -1,4 +1,4 @@
-/*global require, describe, beforeEach, it, expect, console*/
+/*global require, describe, beforeEach, afterEach, it, expect, console*/
 describe('module: Storage', function () {
     var storage;
 
@@ -15,7 +15,13 @@ describe('module: Storage', function () {
     describe('#save', function () {
         var fs = require('fs');
 
-        it('"properties" folder does not exist', function () {
+        afterEach(function () {
+            if (fs.existsSync('properties')) {
+                fs.rmdirSync('properties');
+            }
+        });
+
+        it('starts without a "properties" folder', function () {
             var dirs = fs.readdirSync('.');
             expect(dirs).not.to.contain('properties');
         });
