@@ -27,11 +27,11 @@ module.exports = function () {
 
         // return the last chained promise
         return factory.createPromise(ids)
-            .then(function (v) { 
-                return crawler.getContent(v);
+            .then(function (ids) { 
+                return crawler.getContent(ids);
             })
-            .then(function (w) {
-                return parser.parse(w);
+            .then(function (pages) {
+                return parser.parse(pages);
             })
             .then(function (properties) {
                 console.log('properties', properties);
