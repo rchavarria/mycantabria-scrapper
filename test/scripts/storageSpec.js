@@ -15,12 +15,18 @@ describe('module: Storage', function () {
     describe('#save', function () {
         var fs = require('fs');
 
+        it('"properties" folder does not exist', function () {
+            var dirs = fs.readdirSync('.');
+            expect(dirs).not.to.contain('properties');
+        });
+
         it('creates a "properties" folder where to place all properties', function () {
             storage.save();
             var dirs = fs.readdirSync('.');
             console.log('dirs:', dirs);
             expect(dirs).to.contain('properties');
         });
+
     });
 
 });
