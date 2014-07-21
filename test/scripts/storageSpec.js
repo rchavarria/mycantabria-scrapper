@@ -35,6 +35,13 @@ describe('module: Storage', function () {
             expect(dirs).to.contain(storage.STORAGE_FOLDER);
         });
 
+        it('creates as many files as properties are passed as parameters', function () {
+            storage.save([1, 2, 3]);
+
+            var createdFiles = fs.readdirSync(storage.STORAGE_FOLDER);
+            expect(createdFiles).to.have.length(3);
+        });
+
     });
 
 });
