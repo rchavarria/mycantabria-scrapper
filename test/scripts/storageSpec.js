@@ -17,9 +17,9 @@ describe('module: Storage', function () {
 
         afterEach(function () {
             fs.exists('properties', function (exists) {
-                if (exists) {
-                    fs.rmdir('properties');
-                }
+                if (!exists) return;
+
+                fs.rmdir('properties');
             });
         });
 
