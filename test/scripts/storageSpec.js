@@ -13,12 +13,11 @@ describe('module: Storage', function () {
     });
 
     describe('#save', function () {
-        var fs = require('fs');
+        var fs = require('fs'),
+            rimraf = require('rimraf');
 
         afterEach(function () {
-            if (!fs.existsSync(storage.STORAGE_FOLDER)) {
-                fs.rmdirSync(storage.STORAGE_FOLDER);
-            }
+            rimraf.sync(storage.STORAGE_FOLDER);
         });
 
         it('starts without a "properties" folder', function () {

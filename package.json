@@ -20,6 +20,7 @@
     "chai": "~1.9.1",
     "sinon": "~1.10.2",
     "sinon-chai": "~2.5.0",
-    "jshint-stylish": "~0.3.0"
+    "jshint-stylish": "~0.3.0",
+    "rimraf": "~2.2.8"
   }
 }
