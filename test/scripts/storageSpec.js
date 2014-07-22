@@ -1,4 +1,4 @@
-/*global require, describe, beforeEach, afterEach, it, expect, console*/
+/*global require, describe, beforeEach, afterEach, it, expect, JSON, console*/
 describe('module: Storage', function () {
     var storage;
 
@@ -46,6 +46,15 @@ describe('module: Storage', function () {
             expect(exists).to.equal(true);
         });
 
+        it('writes property objects as JSON', function () {
+            var savedProperty,
+                property = { id: 1234, name: 'foo', description: 'bar' };
+
+            storage.save( [property] );
+
+            savedProperty = fs.readFileSync(storage.STORAGE_FOLDER + '/1234');
+            expect(savedProperty).to.equal(JSON.stringify(property));
+        });
     });
 
 });
