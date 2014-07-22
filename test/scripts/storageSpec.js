@@ -29,14 +29,14 @@ describe('module: Storage', function () {
         });
 
         it('creates a "properties" folder where to place all properties', function () {
-            storage.save();
+            storage.save([]);
             var dirs = fs.readdirSync('.');
             console.log('dirs:', dirs);
             expect(dirs).to.contain(storage.STORAGE_FOLDER);
         });
 
         it('creates as many files as properties are passed as parameters', function () {
-            storage.save([1, 2, 3]);
+            storage.save([ {id:1}, {id:2}, {id:3} ]);
 
             var createdFiles = fs.readdirSync(storage.STORAGE_FOLDER);
             expect(createdFiles).to.have.length(3);
