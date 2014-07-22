@@ -32,11 +32,18 @@ describe('module: Storage', function () {
             expect(dirs).to.contain(storage.STORAGE_FOLDER);
         });
 
-        it('creates as many files as properties are passed as parameters', function () {
+        it('creates as many files in the properties folder as properties are passed as parameters', function () {
             storage.save([ {id:1}, {id:2}, {id:3} ]);
 
             var createdFiles = fs.readdirSync(storage.STORAGE_FOLDER);
             expect(createdFiles).to.have.length(3);
+        });
+
+        it('creates files whose names are the ids of the properties', function () {
+            storage.save([ {id:1} ]);
+
+            var exists = fs.existsSync(storage.STORAGE_FOLDER + '/1');
+            expect(exists).to.equal(true);
         });
 
     });
