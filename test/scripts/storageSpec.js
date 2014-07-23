@@ -59,6 +59,10 @@ describe('module: Storage', function () {
                     expect(savedProperty).to.equal(JSON.stringify(property));
                 });
         });
+
+        it('RED : MAKE TEST FAIL IF THEY FAIL - DO NOT EXPECT INSIDE "THEN" METHODS', function () {
+            expect(1).to.equal(2);
+        });
     });
 
 });
