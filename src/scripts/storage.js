@@ -1,9 +1,19 @@
 /*global module, require, JSON, console*/
 module.exports = function (Q) {
 
-    var fs = require('fs');
+    var fs = require('fs'),
+        _STORAGE_FOLDER = 'properties';
 
-    this.STORAGE_FOLDER = 'properties';
+    this.STORAGE_FOLDER = _STORAGE_FOLDER;
+
+    function writeToAFile (property, deferred) {
+        var id = property.id,
+            path = _STORAGE_FOLDER + '/' + id,
+            content = JSON.stringify(property);
+
+        fs.writeFileSync(path, content);
+        deferred.resolve(path);
+    }
 
     this.save = function (properties) {
         var deferred,
@@ -15,12 +25,7 @@ module.exports = function (Q) {
 
         for(var i = 0; i < properties.length; i++) {
             deferred = Q.defer();
-
-            var id = properties[i].id,
-                path = this.STORAGE_FOLDER + '/' + id;
-            fs.writeFileSync(path, JSON.stringify(properties[i]));
-
-            deferred.resolve(true);
+            writeToAFile(properties[i], deferred);
             promises.push(deferred.promise);
         }
 
