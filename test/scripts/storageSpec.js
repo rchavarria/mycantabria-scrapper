@@ -3,9 +3,10 @@ describe('module: Storage', function () {
     var storage;
 
     beforeEach(function () {
-        var Storage = require('../../src/scripts/storage');
+        var Q = require('q'),
+            Storage = require('../../src/scripts/storage');
 
-        storage = new Storage();
+        storage = new Storage(Q);
     });
 
     it('has a method called #save', function () {
