@@ -1,4 +1,4 @@
-/*global require, describe, beforeEach, afterEach, it, expect, JSON, console*/
+/*global require, describe, beforeEach, afterEach, it, expect, JSON*/
 describe('module: Storage', function () {
     var storage;
 
@@ -28,7 +28,6 @@ describe('module: Storage', function () {
         it('creates a "properties" folder where to place all properties', function () {
             storage.save([]);
             var dirs = fs.readdirSync('.');
-            console.log('dirs:', dirs);
             expect(dirs).to.contain(storage.STORAGE_FOLDER);
         });
 
@@ -52,7 +51,7 @@ describe('module: Storage', function () {
 
             storage.save( [property] );
 
-            savedProperty = fs.readFileSync(storage.STORAGE_FOLDER + '/1234');
+            savedProperty = fs.readFileSync(storage.STORAGE_FOLDER + '/1234', 'utf8');
             expect(savedProperty).to.equal(JSON.stringify(property));
         });
     });

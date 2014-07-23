@@ -1,4 +1,4 @@
-/*global module, require, console*/
+/*global module, require, JSON, console*/
 module.exports = function () {
     var fs = require('fs');
 
@@ -12,7 +12,7 @@ module.exports = function () {
         for(var i = 0; i < properties.length; i++) {
             var id = properties[i].id,
                 path = this.STORAGE_FOLDER + '/' + id;
-            fs.writeFileSync(path, 'some content');
+            fs.writeFileSync(path, JSON.stringify(properties[i]));
         }
         console.log('saved');
     };
