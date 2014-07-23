@@ -27,33 +27,37 @@ describe('module: Storage', function () {
         });
 
         it('creates a "properties" folder where to place all properties', function () {
-            storage.save([]);
-            var dirs = fs.readdirSync('.');
-            expect(dirs).to.contain(storage.STORAGE_FOLDER);
+            storage.save([])
+                .then(function () {
+                    var dirs = fs.readdirSync('.');
+                    expect(dirs).to.contain(storage.STORAGE_FOLDER);
+                });
         });
 
         it('creates as many files in the properties folder as properties are passed as parameters', function () {
-            storage.save([ {id:1}, {id:2}, {id:3} ]);
-
-            var createdFiles = fs.readdirSync(storage.STORAGE_FOLDER);
-            expect(createdFiles).to.have.length(3);
+            storage.save([ {id:1}, {id:2}, {id:3} ])
+                .then(function () {
+                    var createdFiles = fs.readdirSync(storage.STORAGE_FOLDER);
+                    expect(createdFiles).to.have.length(3);
+                });
         });
 
         it('creates files whose names are the ids of the properties', function () {
-            storage.save([ {id:1} ]);
-
-            var exists = fs.existsSync(storage.STORAGE_FOLDER + '/1');
-            expect(exists).to.equal(true);
+            storage.save([ {id:1} ])
+                .then(function () {
+                    var exists = fs.existsSync(storage.STORAGE_FOLDER + '/1');
+                    expect(exists).to.equal(true);
+                });
         });
 
         it('writes property objects as JSON', function () {
-            var savedProperty,
-                property = { id: 1234, name: 'foo', description: 'bar' };
+            var property = { id: 1234, name: 'foo', description: 'bar' };
 
-            storage.save( [property] );
-
-            savedProperty = fs.readFileSync(storage.STORAGE_FOLDER + '/1234', 'utf8');
-            expect(savedProperty).to.equal(JSON.stringify(property));
+            storage.save( [property] )
+                .then(function () {
+                    var savedProperty = fs.readFileSync(storage.STORAGE_FOLDER + '/1234', 'utf8');
+                    expect(savedProperty).to.equal(JSON.stringify(property));
+                });
         });
     });
 
