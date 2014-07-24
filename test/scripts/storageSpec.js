@@ -27,11 +27,12 @@ describe('module: Storage', function () {
         });
 
         it('creates a "properties" folder where to place all properties', function () {
-            storage.save([])
-                .then(function () {
-                    var dirs = fs.readdirSync('.');
-                    expect(dirs).to.contain(storage.STORAGE_FOLDER);
-                });
+            var promise = storage.save([]);
+
+            expect(promise).to.eventually.have.length(0);
+
+            var dirs = fs.readdirSync('.');
+            expect(dirs).to.contain(storage.STORAGE_FOLDER);
         });
 
         it('creates as many files in the properties folder as properties are passed as parameters', function () {
@@ -59,10 +60,11 @@ describe('module: Storage', function () {
                     expect(savedProperty).to.equal(JSON.stringify(property));
                 });
         });
-
+/*
         it('RED : MAKE TEST FAIL IF THEY FAIL - DO NOT EXPECT INSIDE "THEN" METHODS', function () {
             expect(1).to.equal(2);
         });
+*/
     });
 
 });
