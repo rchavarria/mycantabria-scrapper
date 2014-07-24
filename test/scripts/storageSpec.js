@@ -1,5 +1,5 @@
 /*global require, describe, beforeEach, afterEach, it, expect, JSON*/
-describe.only('module: Storage', function () {
+describe('module: Storage', function () {
     var storage;
 
     beforeEach(function () {
@@ -35,17 +35,20 @@ describe.only('module: Storage', function () {
                     expect(dirs).to.contain(storage.STORAGE_FOLDER);
                     done();
                 })
-                .catch(done);
-
-            return expect(promise).to.eventually.have.length(0);
+                .catch(done); // make the test fail if expectations in then() fails
         });
 
-        it('creates as many files in the properties folder as properties are passed as parameters', function () {
-            storage.save([ {id:1}, {id:2}, {id:3} ])
+        it('creates as many files in the properties folder as properties are passed as parameters', function (done) {
+            var promise = storage.save([ {id:1}, {id:2}, {id:3} ]);
+
+            promise
                 .then(function () {
                     var createdFiles = fs.readdirSync(storage.STORAGE_FOLDER);
                     expect(createdFiles).to.have.length(3);
-                });
+                    expect(createdFiles).to.have.members( ['1', '2', '3'] );
+                    done();
+                })
+                .catch(done); // make the test fail if expectations in then() fails
         });
 
         it('creates files whose names are the ids of the properties', function () {
