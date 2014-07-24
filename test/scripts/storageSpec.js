@@ -79,6 +79,10 @@ describe('module: Storage', function () {
                 .catch(done);
         });
 
+        it('RED : TRY TO WRITE PROPERTIES TO FILES ASYNCHRONOUSLY', function () {
+            expect(1).to.equal(2);
+        });
+
     });
 
 });
