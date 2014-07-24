@@ -51,12 +51,16 @@ describe('module: Storage', function () {
                 .catch(done); // make the test fail if expectations in then() fails
         });
 
-        it('creates files whose names are the ids of the properties', function () {
-            storage.save([ {id:1} ])
+        it('creates files whose names are the ids of the properties', function (done) {
+            var promise = storage.save([ {id:1234} ]);
+
+            promise
                 .then(function () {
-                    var exists = fs.existsSync(storage.STORAGE_FOLDER + '/1');
+                    var exists = fs.existsSync(storage.STORAGE_FOLDER + '/1234');
                     expect(exists).to.equal(true);
-                });
+                    done();
+                })
+                .catch(done); // make the test fail if expectations in then() fails
         });
 
         it('writes property objects as JSON', function () {
@@ -68,11 +72,7 @@ describe('module: Storage', function () {
                     expect(savedProperty).to.equal(JSON.stringify(property));
                 });
         });
-/*
-        it('RED : MAKE TEST FAIL IF THEY FAIL - DO NOT EXPECT INSIDE "THEN" METHODS', function () {
-            expect(1).to.equal(2);
-        });
-*/
+
     });
 
 });
