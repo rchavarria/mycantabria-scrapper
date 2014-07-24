@@ -1,5 +1,5 @@
 /*global require, describe, beforeEach, afterEach, it, expect, JSON*/
-describe('module: Storage', function () {
+describe.only('module: Storage', function () {
     var storage;
 
     beforeEach(function () {
@@ -26,13 +26,18 @@ describe('module: Storage', function () {
             expect(dirs).not.to.contain(storage.STORAGE_FOLDER);
         });
 
-        it('creates a "properties" folder where to place all properties', function () {
+        it('creates a "properties" folder where to place all properties', function (done) {
             var promise = storage.save([]);
 
-            expect(promise).to.eventually.have.length(0);
+            promise
+                .then(function () {
+                    var dirs = fs.readdirSync('.');
+                    expect(dirs).to.contain(storage.STORAGE_FOLDER);
+                    done();
+                })
+                .catch(done);
 
-            var dirs = fs.readdirSync('.');
-            expect(dirs).to.contain(storage.STORAGE_FOLDER);
+            return expect(promise).to.eventually.have.length(0);
         });
 
         it('creates as many files in the properties folder as properties are passed as parameters', function () {
