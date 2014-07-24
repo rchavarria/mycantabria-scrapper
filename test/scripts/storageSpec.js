@@ -48,7 +48,7 @@ describe('module: Storage', function () {
                     expect(createdFiles).to.have.members( ['1', '2', '3'] );
                     done();
                 })
-                .catch(done); // make the test fail if expectations in then() fails
+                .catch(done);
         });
 
         it('creates files whose names are the ids of the properties', function (done) {
@@ -60,17 +60,23 @@ describe('module: Storage', function () {
                     expect(exists).to.equal(true);
                     done();
                 })
-                .catch(done); // make the test fail if expectations in then() fails
+                .catch(done);
         });
 
-        it('writes property objects as JSON', function () {
-            var property = { id: 1234, name: 'foo', description: 'bar' };
+        it('writes property objects as JSON', function (done) {
+            var property = { id: 1234, name: 'foo', description: 'bar' },
+                promise = storage.save([ property ]);
 
-            storage.save( [property] )
+            promise
                 .then(function () {
                     var savedProperty = fs.readFileSync(storage.STORAGE_FOLDER + '/1234', 'utf8');
                     expect(savedProperty).to.equal(JSON.stringify(property));
-                });
+                    expect(savedProperty).to.contain('"id":1234');
+                    expect(savedProperty).to.contain('"name":"foo"');
+                    expect(savedProperty).to.contain('"description":"bar"');
+                    done();
+                })
+                .catch(done);
         });
 
     });
