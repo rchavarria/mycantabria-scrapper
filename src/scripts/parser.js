@@ -1,4 +1,4 @@
-/*global module, console*/
+/*global module*/
 
 /**
  * Parser module will parse property pages content to extract information
@@ -98,8 +98,6 @@ module.exports = function(cheerio, factory) {
     }
 
     this.parse = function(propertyPagesContent) {
-        console.log('gonna parse', propertyPagesContent.length, 'pages');
-
         var properties = [],
             content,
             i;

@@ -1,4 +1,4 @@
-/*global module, require, JSON, console*/
+/*global module, require, JSON*/
 module.exports = function (Q) {
 
     var fs = require('fs'),
@@ -34,7 +34,6 @@ module.exports = function (Q) {
             promises.push(deferred.promise);
         }
 
-        console.log('returning', promises.length, 'promises');
         return Q(promises).all();
     };
 };
