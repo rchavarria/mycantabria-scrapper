@@ -11,8 +11,13 @@ module.exports = function (Q) {
             path = _STORAGE_FOLDER + '/' + id,
             content = JSON.stringify(property);
 
-        fs.writeFileSync(path, content);
-        deferred.resolve(path);
+        fs.writeFile(path, content, function (err) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(path);
+            }
+        });
     }
 
     this.save = function (properties) {
