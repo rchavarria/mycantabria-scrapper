@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     clean = require('gulp-clean'),
     rename = require('gulp-rename'),
-    mocha = require('gulp-mocha');
+    mocha = require('gulp-mocha'),
+    shell = require('gulp-shell');
 
 gulp.task('default', ['clean'], function() {
     gulp.start('scripts');
@@ -42,3 +43,5 @@ gulp.task('test', ['jshint'], function () {
 gulp.task('testw', ['jshint'], function () {
     return gulp.watch(['src/scripts/**/*.js', 'test/scripts/**/*.js'], ['test']);
 });
+
+gulp.task('scrap', ['jshint'], shell.task( ['node src/scripts/index.js'] ));
