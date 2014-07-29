@@ -21,4 +21,9 @@ describe('TODO tasks', function () {
         return expect(done).to.be.true;
     });
 
+    it('ask Product Owner if parsed property fields are enough', function () {
+        var done = false;
+        return expect(done).to.be.true;
+    });
+
 });
