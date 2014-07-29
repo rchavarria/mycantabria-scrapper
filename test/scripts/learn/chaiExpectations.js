@@ -1,5 +1,5 @@
 /*global describe, it, expect*/
-describe('Chai', function() {
+describe('learning "Chai"', function() {
     
     describe('#expect', function() {
         

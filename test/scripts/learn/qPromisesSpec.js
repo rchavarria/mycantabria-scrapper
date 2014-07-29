@@ -1,5 +1,5 @@
 /*global describe, it, require, expect*/
-describe('learning module: Q', function() {
+describe('learning "Q"', function() {
     var Q = require('q');
         
     describe('#all', function() {

@@ -1,5 +1,5 @@
 /*global describe, it, require, expect*/
-describe('Cheerio', function() {
+describe('learning "Cheerio"', function() {
     var cheerio = require('cheerio');
 
     describe('#basics', function () {

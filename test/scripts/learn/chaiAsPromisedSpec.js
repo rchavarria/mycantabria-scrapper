@@ -1,5 +1,5 @@
 /*global describe, it, require, expect*/
-describe('Chai As Promised API', function() {
+describe('learning "Chai As Promised"', function() {
     var Q = require('q');
     
     it('checks values returned by promises', function() {
