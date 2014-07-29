@@ -8,7 +8,8 @@ module.exports = function () {
         // require local modules
         Factory = require('./factory'),
         Crawler = require('./crawler'),
-        Parser = require('./parser');
+        Parser = require('./parser'),
+        Storage = require('./storage');
 
     this.scrap = function () {
         //
@@ -23,7 +24,8 @@ module.exports = function () {
         var ids = [2026, 2031, 2034],
             factory = new Factory(Q),
             crawler = new Crawler(Q, request),
-            parser = new Parser(cheerio, factory);
+            parser = new Parser(cheerio, factory),
+            storage = new Storage(Q);
 
         // return the last chained promise
         return factory.createPromise(ids)
@@ -34,7 +36,10 @@ module.exports = function () {
                 return parser.parse(pages);
             })
             .then(function (properties) {
-                console.log('properties', properties);
+                return storage.save(properties);
+            })
+            .then(function (writenFiles) {
+                console.log('Properties saved to files:\n', writenFiles);
             })
             .catch(function (err) {
                 console.error('An error happened:', err);

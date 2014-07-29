@@ -7,7 +7,7 @@ describe('TODO tasks', function () {
     });
 
     it('use Storage in Scrapper, to save properties to files', function () {
-        var done = false;
+        var done = true;
         return expect(done).to.be.true;
     });
 

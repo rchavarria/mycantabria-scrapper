@@ -7,7 +7,7 @@ module.exports = function (Q) {
     this.STORAGE_FOLDER = _STORAGE_FOLDER;
 
     function writeToAFile (property, deferred) {
-        var id = property.id,
+        var id = property.reference,
             path = _STORAGE_FOLDER + '/' + id,
             content = JSON.stringify(property);
 

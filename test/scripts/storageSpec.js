@@ -39,7 +39,7 @@ describe('module: Storage', function () {
         });
 
         it('creates as many files in the properties folder as properties are passed as parameters', function (done) {
-            var promise = storage.save([ {id:1}, {id:2}, {id:3} ]);
+            var promise = storage.save([ {reference:1}, {reference:2}, {reference:3} ]);
 
             promise
                 .then(function () {
@@ -52,7 +52,7 @@ describe('module: Storage', function () {
         });
 
         it('creates files whose names are the ids of the properties', function (done) {
-            var promise = storage.save([ {id:1234} ]);
+            var promise = storage.save([ {reference:1234} ]);
 
             promise
                 .then(function () {
@@ -64,14 +64,14 @@ describe('module: Storage', function () {
         });
 
         it('writes property objects as JSON', function (done) {
-            var property = { id: 1234, name: 'foo', description: 'bar' },
+            var property = { reference: 1234, name: 'foo', description: 'bar' },
                 promise = storage.save([ property ]);
 
             promise
                 .then(function () {
                     var savedProperty = fs.readFileSync(storage.STORAGE_FOLDER + '/1234', 'utf8');
                     expect(savedProperty).to.equal(JSON.stringify(property));
-                    expect(savedProperty).to.contain('"id":1234');
+                    expect(savedProperty).to.contain('"reference":1234');
                     expect(savedProperty).to.contain('"name":"foo"');
                     expect(savedProperty).to.contain('"description":"bar"');
                     done();
