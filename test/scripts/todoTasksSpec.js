@@ -26,4 +26,9 @@ describe('TODO tasks', function () {
         return expect(done).to.be.true;
     });
 
+    it('rename gulp task "scripts" to "build" and use it before running the app so that when running the app it runs the built and minified version', function () {
+        var done = false;
+        return expect(done).to.be.true;
+    });
+
 });
