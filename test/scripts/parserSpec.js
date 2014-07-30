@@ -51,8 +51,8 @@ describe('module: Parser', function () {
             });
 
             it('parses the property "reference"', function () {
-                expect(property2041.reference).to.equal('ID 2041');
-                expect(property2052.reference).to.equal('ID 2052');
+                expect(property2041.reference).to.equal(2041);
+                expect(property2052.reference).to.equal(2052);
             });
 
             it('parses the property "province"', function () {
