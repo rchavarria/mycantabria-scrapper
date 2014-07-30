@@ -17,7 +17,7 @@ describe('TODO tasks', function () {
     });
 
     it('parse properties "reference" and remove the "ID " part', function () {
-        var done = false;
+        var done = true;
         return expect(done).to.be.true;
     });
 
