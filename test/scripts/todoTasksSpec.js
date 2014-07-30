@@ -12,7 +12,7 @@ describe('TODO tasks', function () {
     });
 
     it('update README file with commands to jshint, test, run the app', function () {
-        var done = false;
+        var done = true;
         return expect(done).to.be.true;
     });
 
