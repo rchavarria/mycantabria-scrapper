@@ -23,7 +23,9 @@ module.exports = function(cheerio, factory) {
     }
 
     function parseReference(tds) {
-        return childText(tds.eq(4));
+        var strReference = childText(tds.eq(4));
+        strReference = strReference.replace('ID ', '');
+        return parseInt(strReference, 10);
     }
 
     function parseProvince(tds) {
